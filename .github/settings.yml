@@ -1,6 +1,6 @@
 ---
 repository:
-  name: cronlist
+  name: prometheus
   description: Ansible role to install and configure Prometheus
   topics: ansible, role, ansible-role, hacktoberfest
 
