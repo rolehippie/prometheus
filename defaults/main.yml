@@ -1,0 +1,140 @@
+---
+# @var prometheus_version:description: Version of Prometheus to use
+prometheus_version: 2.23.0
+
+# @var prometheus_image:description: Docker image to use for deployment
+prometheus_image: "quay.io/prometheus/prometheus:v{{ prometheus_version }}"
+
+# @var prometheus_network:description: Optionally assign this Docker network to container
+prometheus_network:
+
+# @var prometheus_default_publish:description: List of default port publishing
+# @var prometheus_default_publish:example: >
+# prometheus_default_publish:
+#   - 127.0.0.1:9090:9090
+# @end
+prometheus_default_publish:
+  - 9090:9090
+
+# @var prometheus_extra_publish:description: List of extra port publishing
+# @var prometheus_extra_publish:example: >
+# prometheus_extra_publish:
+#   - 8080:8080
+#   - 127.0.0.1:9000:9000
+# @end
+prometheus_extra_publish: []
+
+# @var prometheus_default_labels:description: List of default labels to assign to docker command
+prometheus_default_labels: []
+
+# @var prometheus_extra_labels:description: List of extra labels to assign to docker command
+prometheus_extra_labels: []
+
+# @var prometheus_default_folders:description: List of default folders to create
+prometheus_default_folders:
+  - /etc/prometheus/rules
+  - /var/lib/prometheus
+
+# @var prometheus_extra_folders:description: List of extra folders to create
+# @var prometheus_extra_folders:example: >
+# prometheus_extra_folders:
+#   - /path/to/host/folder1
+#   - /path/to/host/folder2
+#   - /path/to/host/folder3
+# @end
+prometheus_extra_folders: []
+
+# @var prometheus_default_volumes:description: List of default volumes to mount
+prometheus_default_volumes:
+  - /var/lib/prometheus:/var/lib/prometheus
+  - /etc/prometheus/rules:/etc/prometheus/rules
+
+# @var prometheus_extra_volumes:description: List of extra volumes to mount
+# @var prometheus_extra_volumes:example: >
+# prometheus_extra_volumes:
+#   - /path/to/host/folder1:/path/within/container1
+#   - /path/to/host/folder2:/path/within/container2
+#   - /path/to/host/folder3:/path/within/container3
+# @end
+prometheus_extra_volumes: []
+
+# @var prometheus_domain:description: Domain for external access
+# @var prometheus_domain:example: $ "https://prometheus.example.com"
+prometheus_domain:
+
+# @var prometheus_scrape_interval:description: Global default scrape interval
+prometheus_scrape_interval: 15s
+
+# @var prometheus_evaluation_interval:description: Global default evaluation interval
+prometheus_evaluation_interval: 15s
+
+# @var prometheus_tsdb_retention_time:description: Retention time to define the maximum age of the data
+prometheus_tsdb_retention_time: 30d
+
+# @var prometheus_rule_files:description: List of paths to read rule files from
+prometheus_rule_files:
+  - /etc/prometheus/rules/*.yml
+
+# @var prometheus_scrape_configs:description: List of scrape configuration
+# @var prometheus_scrape_configs:example: >
+# prometheus_scrape_configs:
+#   - job_name: prometheus
+#     metrics_path: /metrics
+#     scheme: http
+#     static_configs:
+#       - targets:
+#           - localhost:9090
+# @end
+prometheus_scrape_configs: []
+
+# @var prometheus_alertmanagers:description: List of alertmanager configuration
+# @var prometheus_alertmanagers:example: >
+# prometheus_alertmanagers:
+#   - scheme: http
+#     static_configs:
+#       - targets:
+#           - loclhost:9093
+# @end
+prometheus_alertmanagers: []
+
+# @var prometheus_default_rules:description: List of default rule file definitions
+# @var prometheus_default_rules:example: >
+# prometheus_default_rules:
+#   - name: example
+#     content:
+#       groups:
+#         - name: example
+#           rules:
+#             - alert: ...
+#               expr: ...
+#               for: 5m
+#   - name: example-from-url
+#     url: http://example.com/example.yml
+#   - name: example-from-template
+#     src: path/to/template.j2
+#   - name: example-to-remove
+#     state: absent
+# @end
+prometheus_default_rules: []
+
+# @var prometheus_extra_rules:description: List of extra rule file definitions
+# @var prometheus_extra_rules:example: >
+# prometheus_extra_rules:
+#   - name: example
+#     content:
+#       groups:
+#         - name: example
+#           rules:
+#             - alert: ...
+#               expr: ...
+#               for: 5m
+#   - name: example-from-url
+#     url: http://example.com/example.yml
+#   - name: example-from-template
+#     src: path/to/template.j2
+#   - name: example-to-remove
+#     state: absent
+# @end
+prometheus_extra_rules: []
+
+...

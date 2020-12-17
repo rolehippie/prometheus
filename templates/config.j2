@@ -1,0 +1,19 @@
+global:
+  scrape_interval: {{ prometheus_scrape_interval }}
+  evaluation_interval: {{ prometheus_evaluation_interval }}
+{% if prometheus_rule_files | default(False) %}
+
+rule_files:
+  {{ prometheus_rule_files | to_nice_yaml(indent=2) | indent(width=2, indentfirst=False) | trim }}
+{% endif %}
+{% if prometheus_scrape_configs | default(False) %}
+
+scrape_configs:
+  {{ prometheus_scrape_configs | to_nice_yaml(indent=2) | indent(width=2, indentfirst=False) | trim }}
+{% endif %}
+{% if prometheus_alertmanagers | default(False) %}
+
+alerting:
+  alertmanagers:
+    {{ prometheus_alertmanagers | to_nice_yaml(indent=2) | indent(width=4, indentfirst=False) | trim }}
+{% endif %}

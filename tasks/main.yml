@@ -1,0 +1,114 @@
+# Standards: 1.2
+---
+- name: Create required directories
+  loop: "{{ prometheus_default_folders + prometheus_extra_folders }}"
+  file:
+    path: "{{ item }}"
+    owner: nobody
+    group: nogroup
+    recurse: True
+    state: directory
+  tags:
+    - prometheus
+
+- name: Write general config
+  notify:
+    - Restart prometheus
+  template:
+    src: config.j2
+    dest: /etc/prometheus/prometheus.yml
+    owner: nobody
+    group: nogroup
+  tags:
+    - prometheus
+
+- name: Rule from url
+  notify:
+    - Restart prometheus
+  loop: "{{ prometheus_default_rules + prometheus_extra_rules }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when: item.url | default(False) and item.state | default("present") == "present"
+  get_url:
+    url: "{{ item.url }}"
+    dest: "{{ item.path | default('/etc/prometheus/rules') }}/{{ item.name }}.yml"
+    owner: nobody
+    group: nogroup
+    mode: o=rw,g=r,o=r
+  tags:
+    - prometheus
+
+- name: Rule from content
+  notify:
+    - Restart prometheus
+  loop: "{{ prometheus_default_rules + prometheus_extra_rules }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when: item.content | default(False) and item.state | default("present") == "present"
+  copy:
+    content: "{{ item.content }}"
+    dest: "{{ item.path | default('/etc/prometheus/rules') }}/{{ item.name }}.yml"
+    owner: nobody
+    group: nogroup
+    mode: o=rw,g=r,o=r
+  tags:
+    - prometheus
+
+- name: Rule from file
+  notify:
+    - Restart prometheus
+  loop: "{{ prometheus_default_rules + prometheus_extra_rules }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when: item.src | default(False) and item.state | default("present") == "present"
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.path | default('/etc/prometheus/rules') }}/{{ item.name }}.yml"
+    owner: nobody
+    group: nogroup
+    mode: o=rw,g=r,o=r
+  tags:
+    - prometheus
+
+- name: Delete defined rules
+  notify:
+    - Restart prometheus
+  loop: "{{ prometheus_default_rules + prometheus_extra_rules }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when: item.state | default("present") == "absent"
+  file:
+    path: "{{ item.path | default('/etc/prometheus/rules') }}/{{ item.name }}.yml"
+    state: absent
+  tags:
+    - prometheus
+
+- name: Write default config
+  notify:
+    - Restart prometheus
+  template:
+    src: default.j2
+    dest: /etc/default/prometheus
+  tags:
+    - prometheus
+
+- name: Write service file
+  notify:
+    - Restart prometheus
+  template:
+    src: service.j2
+    dest: /etc/systemd/system/prometheus.service
+  tags:
+    - prometheus
+
+- name: Start prometheus service
+  systemd:
+    name: prometheus
+    state: started
+    daemon_reload: True
+    masked: False
+    enabled: True
+  tags:
+    - prometheus
+
+...
