@@ -23,7 +23,6 @@ ExecStart=/usr/bin/docker run --rm \
 {% if prometheus_network | default(False) %}
   --network {{ prometheus_network }} \
 {% endif %}
-  --volume /etc/passwd:/etc/passwd:ro \
   --volume /etc/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml \
 {% for item in prometheus_default_volumes + prometheus_extra_volumes %}
   --volume {{ item }} \

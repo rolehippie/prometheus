@@ -1,3 +1,4 @@
+# Standards: 1.2
 ---
 # @var prometheus_version:description: Version of Prometheus to use
 prometheus_version: 2.23.0

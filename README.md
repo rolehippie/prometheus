@@ -350,7 +350,7 @@ prometheus_version: 2.23.0
 
 ## Dependencies
 
-* None
+* [rolehippie.docker](https://github.com/rolehippie/docker)
 
 ## License
 

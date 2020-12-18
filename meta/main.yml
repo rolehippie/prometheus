@@ -15,7 +15,7 @@
 # Building and improving this Ansible role have been sponsored by my employer **Proact Deutschland GmbH**.
 # @end
 # @meta dependencies:value: >
-# None
+# [rolehippie.docker](https://github.com/rolehippie/docker)
 # @end
 galaxy_info:
   author: Thomas Boerger
