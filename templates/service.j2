@@ -1,48 +1,14 @@
 [Unit]
-Description=Prometheus
-
-Wants=docker.service
-After=docker.service
+Description=Monitoring system and time series database
 
 [Service]
 Restart=always
-RestartSec=10s
-EnvironmentFile=/etc/environment
-
-ExecStop=/bin/sh -c '/usr/bin/docker ps | /bin/grep %p 1> /dev/null && /usr/bin/docker stop %p || true'
-ExecStartPre=/bin/sh -c '/usr/bin/docker ps | /bin/grep %p 1> /dev/null && /usr/bin/docker kill %p || true'
-ExecStartPre=/bin/sh -c '/usr/bin/docker ps -a | /bin/grep %p 1> /dev/null && /usr/bin/docker rm %p || true'
-ExecStartPre=/usr/bin/docker pull {{ prometheus_image }}
-ExecStart=/usr/bin/docker run --rm \
-  --name %p \
-  --hostname %p \
-{% for item in prometheus_default_labels + prometheus_extra_labels %}
-  --label {{ item }} \
-{% endfor %}
-  --env-file /etc/default/prometheus \
-{% if prometheus_network | default(False) %}
-  --network {{ prometheus_network }} \
-{% endif %}
-  --volume /etc/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml \
-{% for item in prometheus_default_volumes + prometheus_extra_volumes %}
-  --volume {{ item }} \
-{% endfor %}
-{% for item in prometheus_default_publish + prometheus_extra_publish %}
-  --publish {{ item }} \
-{% endfor %}
-  --health-cmd 'wget -q --spider http://localhost:9090/' \
-  --health-interval 30s \
-  --health-retries 5 \
-  --health-timeout 10s \
-  {{ prometheus_image }} \
-  --config.file=/etc/prometheus/prometheus.yml \
-  --web.external-url=https://{{ prometheus_domain }} \
-  --web.enable-lifecycle \
-  --web.enable-admin-api \
-  --web.console.templates=/etc/prometheus/consoles \
-  --web.console.libraries=/etc/prometheus/console_libraries \
-  --storage.tsdb.path=/var/lib/prometheus \
-  --storage.tsdb.retention.time={{ prometheus_tsdb_retention_time }}
+User=prometheus
+EnvironmentFile=/etc/default/prometheus
+ExecStart=/usr/bin/prometheus $ARGS
+ExecReload=/bin/kill -HUP $MAINPID
+TimeoutStopSec=20s
+SendSIGKILL=no
 
 [Install]
 WantedBy=multi-user.target

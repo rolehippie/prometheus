@@ -1,13 +1,142 @@
 # Standards: 1.2
 ---
-- name: Create required directories
-  loop: "{{ prometheus_default_folders + prometheus_extra_folders }}"
+- name: Create system group
+  group:
+    name: prometheus
+    system: True
+    state: present
+  tags:
+    - prometheus
+
+- name: Create system user
+  user:
+    name: prometheus
+    group: prometheus
+    password: "!"
+    shell: /usr/sbin/nologin
+    home: /var/lib/prometheus
+    create_home: False
+    system: True
+    state: present
+  tags:
+    - prometheus
+
+- name: Create config directories
+  loop:
+    - /etc/prometheus
+    - /etc/prometheus/rules
   file:
     path: "{{ item }}"
-    owner: nobody
-    group: nogroup
-    recurse: True
+    owner: prometheus
+    group: prometheus
     state: directory
+  tags:
+    - prometheus
+
+- name: Create state directories
+  loop:
+    - /var/lib/prometheus
+  file:
+    path: "{{ item }}"
+    owner: prometheus
+    group: prometheus
+    state: directory
+  tags:
+    - prometheus
+
+- name: Check existing install
+  register: prometheus_version_check
+  failed_when: False
+  changed_when: False
+  check_mode: False
+  command: /usr/bin/prometheus --version
+  tags:
+    - prometheus
+
+- name: Fact version change
+  set_fact:
+    prometheus_version_changed: "{{ prometheus_version_check.rc != 0 or (prometheus_version_check.stderr_lines is defined and prometheus_version not in prometheus_version_check.stderr_lines[0]) | bool }}"
+  tags:
+    - prometheus
+
+- name: Download release tarball
+  when: prometheus_version_changed
+  notify:
+    - Restart prometheus
+  unarchive:
+    src: "{{ prometheus_download }}"
+    dest: /usr/local/src
+    remote_src: True
+    owner: root
+    group: root
+  tags:
+    - prometheus
+
+- name: Sync libraries folder
+  when: prometheus_version_changed and not ansible_check_mode
+  notify:
+    - Restart prometheus
+  delegate_to: "{{ inventory_hostname }}"
+  synchronize:
+    src: "/usr/local/src/prometheus-{{ prometheus_version }}.linux-amd64/console_libraries"
+    dest: /etc/prometheus
+    delete: True
+    recursive: True
+  tags:
+    - prometheus
+
+- name: Fix libraries owner
+  when: prometheus_version_changed and not ansible_check_mode
+  notify:
+    - Restart prometheus
+  file:
+    path: /etc/prometheus/console_libraries
+    owner: prometheus
+    group: prometheus
+    recurse: True
+  tags:
+    - prometheus
+
+- name: Sync consoles folder
+  when: prometheus_version_changed and not ansible_check_mode
+  notify:
+    - Restart prometheus
+  delegate_to: "{{ inventory_hostname }}"
+  synchronize:
+    src: "/usr/local/src/prometheus-{{ prometheus_version }}.linux-amd64/consoles"
+    dest: /etc/prometheus
+    delete: True
+    recursive: True
+  tags:
+    - prometheus
+
+- name: Fix consoles owner
+  when: prometheus_version_changed and not ansible_check_mode
+  notify:
+    - Restart prometheus
+  file:
+    path: /etc/prometheus/consoles
+    owner: prometheus
+    group: prometheus
+    recurse: True
+  tags:
+    - prometheus
+
+- name: Copy downloaded binaries
+  when: prometheus_version_changed and not ansible_check_mode
+  notify:
+    - Restart prometheus
+  loop:
+    - prometheus
+    - tsdb
+    - promtool
+  copy:
+    src: "/usr/local/src/prometheus-{{ prometheus_version }}.linux-amd64/{{ item }}"
+    dest: "/usr/bin/{{ item }}"
+    remote_src: True
+    owner: root
+    group: root
+    mode: u=rwx,g=rx,o=rx
   tags:
     - prometheus
 
@@ -16,9 +145,9 @@
     - Restart prometheus
   template:
     src: config.j2
-    dest: /etc/prometheus/prometheus.yml
-    owner: nobody
-    group: nogroup
+    dest: /etc/prometheus/config.yml
+    owner: prometheus
+    group: prometheus
   tags:
     - prometheus
 
@@ -32,8 +161,8 @@
   get_url:
     url: "{{ item.url }}"
     dest: "{{ item.path | default('/etc/prometheus/rules') }}/{{ item.name }}.yml"
-    owner: nobody
-    group: nogroup
+    owner: prometheus
+    group: prometheus
     mode: o=rw,g=r,o=r
   tags:
     - prometheus
@@ -48,8 +177,8 @@
   copy:
     content: "{{ item.content }}"
     dest: "{{ item.path | default('/etc/prometheus/rules') }}/{{ item.name }}.yml"
-    owner: nobody
-    group: nogroup
+    owner: prometheus
+    group: prometheus
     mode: o=rw,g=r,o=r
   tags:
     - prometheus
@@ -64,8 +193,8 @@
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.path | default('/etc/prometheus/rules') }}/{{ item.name }}.yml"
-    owner: nobody
-    group: nogroup
+    owner: prometheus
+    group: prometheus
     mode: o=rw,g=r,o=r
   tags:
     - prometheus
@@ -108,6 +237,13 @@
     daemon_reload: True
     masked: False
     enabled: True
+  tags:
+    - prometheus
+
+- name: Remove install directory
+  file:
+    path: "/usr/local/src/prometheus-{{ prometheus_version }}.linux-amd64"
+    state: absent
   tags:
     - prometheus
 

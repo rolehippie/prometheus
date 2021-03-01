@@ -14,20 +14,11 @@ Building and improving this Ansible role have been sponsored by my employer **Pr
 
 * [Default Variables](#default-variables)
   * [prometheus_alertmanagers](#prometheus_alertmanagers)
-  * [prometheus_default_folders](#prometheus_default_folders)
-  * [prometheus_default_labels](#prometheus_default_labels)
-  * [prometheus_default_publish](#prometheus_default_publish)
   * [prometheus_default_rules](#prometheus_default_rules)
-  * [prometheus_default_volumes](#prometheus_default_volumes)
   * [prometheus_domain](#prometheus_domain)
+  * [prometheus_download](#prometheus_download)
   * [prometheus_evaluation_interval](#prometheus_evaluation_interval)
-  * [prometheus_extra_folders](#prometheus_extra_folders)
-  * [prometheus_extra_labels](#prometheus_extra_labels)
-  * [prometheus_extra_publish](#prometheus_extra_publish)
   * [prometheus_extra_rules](#prometheus_extra_rules)
-  * [prometheus_extra_volumes](#prometheus_extra_volumes)
-  * [prometheus_image](#prometheus_image)
-  * [prometheus_network](#prometheus_network)
   * [prometheus_rule_files](#prometheus_rule_files)
   * [prometheus_scrape_configs](#prometheus_scrape_configs)
   * [prometheus_scrape_interval](#prometheus_scrape_interval)
@@ -61,46 +52,6 @@ prometheus_alertmanagers:
           - loclhost:9093
 ```
 
-### prometheus_default_folders
-
-List of default folders to create
-
-#### Default value
-
-```YAML
-prometheus_default_folders:
-  - /etc/prometheus/rules
-  - /var/lib/prometheus
-```
-
-### prometheus_default_labels
-
-List of default labels to assign to docker command
-
-#### Default value
-
-```YAML
-prometheus_default_labels: []
-```
-
-### prometheus_default_publish
-
-List of default port publishing
-
-#### Default value
-
-```YAML
-prometheus_default_publish:
-  - 9090:9090
-```
-
-#### Example usage
-
-```YAML
-prometheus_default_publish:
-  - 127.0.0.1:9090:9090
-```
-
 ### prometheus_default_rules
 
 List of default rule file definitions
@@ -131,18 +82,6 @@ prometheus_default_rules:
     state: absent
 ```
 
-### prometheus_default_volumes
-
-List of default volumes to mount
-
-#### Default value
-
-```YAML
-prometheus_default_volumes:
-  - /var/lib/prometheus:/var/lib/prometheus
-  - /etc/prometheus/rules:/etc/prometheus/rules
-```
-
 ### prometheus_domain
 
 Domain for external access
@@ -159,6 +98,17 @@ prometheus_domain:
 prometheus_domain: https://prometheus.example.com
 ```
 
+### prometheus_download
+
+URL to the archive of the release to install
+
+#### Default value
+
+```YAML
+prometheus_download: https://github.com/prometheus/prometheus/releases/download/v{{
+  prometheus_version }}/prometheus-{{ prometheus_version }}.linux-amd64.tar.gz
+```
+
 ### prometheus_evaluation_interval
 
 Global default evaluation interval
@@ -167,53 +117,6 @@ Global default evaluation interval
 
 ```YAML
 prometheus_evaluation_interval: 15s
-```
-
-### prometheus_extra_folders
-
-List of extra folders to create
-
-#### Default value
-
-```YAML
-prometheus_extra_folders: []
-```
-
-#### Example usage
-
-```YAML
-prometheus_extra_folders:
-  - /path/to/host/folder1
-  - /path/to/host/folder2
-  - /path/to/host/folder3
-```
-
-### prometheus_extra_labels
-
-List of extra labels to assign to docker command
-
-#### Default value
-
-```YAML
-prometheus_extra_labels: []
-```
-
-### prometheus_extra_publish
-
-List of extra port publishing
-
-#### Default value
-
-```YAML
-prometheus_extra_publish: []
-```
-
-#### Example usage
-
-```YAML
-prometheus_extra_publish:
-  - 8080:8080
-  - 127.0.0.1:9000:9000
 ```
 
 ### prometheus_extra_rules
@@ -244,45 +147,6 @@ prometheus_extra_rules:
     src: path/to/template.j2
   - name: example-to-remove
     state: absent
-```
-
-### prometheus_extra_volumes
-
-List of extra volumes to mount
-
-#### Default value
-
-```YAML
-prometheus_extra_volumes: []
-```
-
-#### Example usage
-
-```YAML
-prometheus_extra_volumes:
-  - /path/to/host/folder1:/path/within/container1
-  - /path/to/host/folder2:/path/within/container2
-  - /path/to/host/folder3:/path/within/container3
-```
-
-### prometheus_image
-
-Docker image to use for deployment
-
-#### Default value
-
-```YAML
-prometheus_image: quay.io/prometheus/prometheus:v{{ prometheus_version }}
-```
-
-### prometheus_network
-
-Optionally assign this Docker network to container
-
-#### Default value
-
-```YAML
-prometheus_network:
 ```
 
 ### prometheus_rule_files
@@ -340,12 +204,12 @@ prometheus_tsdb_retention_time: 30d
 
 ### prometheus_version
 
-Version of Prometheus to use
+Version of the release to install
 
 #### Default value
 
 ```YAML
-prometheus_version: 2.23.0
+prometheus_version: 2.19.1
 ```
 
 ## Dependencies
