@@ -15,7 +15,7 @@ steps:
 
 trigger:
   ref:
-  - refs/heads/master
+  - refs/heads/docker
   - refs/tags/**
   - refs/pull/**
 
@@ -57,7 +57,7 @@ steps:
 
 trigger:
   ref:
-  - refs/heads/master
+  - refs/heads/docker
   - refs/tags/**
   - refs/pull/**
 
@@ -119,7 +119,7 @@ steps:
     - commit
     - push
     remote: https://github.com/${DRONE_REPO}
-    branch: master
+    branch: docker
     path: /drone/src/${DRONE_REPO_NAME}
     netrc_machine: github.com
     netrc_username:
@@ -131,11 +131,11 @@ steps:
     message: "[skip ci] update readme"
   when:
     ref:
-    - refs/heads/master
+    - refs/heads/docker
 
 trigger:
   ref:
-  - refs/heads/master
+  - refs/heads/docker
   - refs/pull/**
 
 depends_on:
@@ -161,7 +161,7 @@ steps:
 
 trigger:
   ref:
-  - refs/heads/master
+  - refs/heads/docker
   - refs/tags/**
   status:
   - success
@@ -189,7 +189,7 @@ steps:
 
 trigger:
   ref:
-  - refs/heads/master
+  - refs/heads/docker
   - refs/tags/**
   status:
   - failure
