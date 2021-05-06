@@ -1,0 +1,118 @@
+# Standards: 1.2
+---
+- name: Install required packages
+  when: prometheus_oauth2_static_users | default(False)
+  loop:
+    - python3-passlib
+    - python3-bcrypt
+  package:
+    name: "{{ item }}"
+    state: present
+  tags:
+    - prometheus
+    - oauth2
+
+- name: Check existing install
+  register: prometheus_oauth2_version_check
+  failed_when: False
+  changed_when: False
+  check_mode: False
+  command: /usr/bin/prometheus-oauth2 --version
+  tags:
+    - prometheus
+    - oauth2
+
+- name: Fact version change
+  set_fact:
+    prometheus_oauth2_version_changed: "{{ prometheus_oauth2_version_check.rc != 0 or (prometheus_oauth2_version_check.stdout_lines is defined and prometheus_oauth2_version not in prometheus_oauth2_version_check.stdout_lines[0]) | bool }}"
+  tags:
+    - prometheus
+    - oauth2
+
+- name: Download release tarball
+  when: prometheus_oauth2_version_changed
+  unarchive:
+    src: "{{ prometheus_oauth2_download }}"
+    dest: /usr/local/src
+    remote_src: True
+    owner: root
+    group: root
+  tags:
+    - prometheus
+    - oauth2
+
+- name: Copy oauth2 binary
+  when: prometheus_oauth2_version_changed and not ansible_check_mode
+  notify:
+    - Restart prometheus-oauth2
+  copy:
+    src: "/usr/local/src/oauth2-proxy-v{{ prometheus_oauth2_version }}.linux-amd64/oauth2-proxy"
+    dest: /usr/bin/prometheus-oauth2
+    remote_src: True
+    owner: root
+    group: root
+    mode: u=rwx,g=rx,o=rx
+  tags:
+    - prometheus
+    - oauth2
+
+- name: Write users config
+  when: prometheus_oauth2_static_users | default(False)
+  loop: "{{ prometheus_oauth2_static_users }}"
+  loop_control:
+    label: "{{ item.username }}"
+  notify:
+    - Restart prometheus-oauth2
+  htpasswd:
+    path: /etc/prometheus/htpasswd
+    name: "{{ item.username }}"
+    password: "{{ item.password }}"
+    crypt_scheme: bcrypt
+    owner: prometheus
+    group: prometheus
+    mode: u=rw,g=r,o=
+    state: "{{ item.state | default('present') }}"
+  tags:
+    - prometheus
+    - oauth2
+
+- name: Write default config
+  notify:
+    - Restart prometheus-oauth2
+  template:
+    src: oauth2/default.j2
+    dest: /etc/default/prometheus-oauth2
+  tags:
+    - prometheus
+    - oauth2
+
+- name: Write service file
+  notify:
+    - Restart prometheus-oauth2
+  template:
+    src: oauth2/service.j2
+    dest: /etc/systemd/system/prometheus-oauth2.service
+  tags:
+    - prometheus
+    - oauth2
+
+- name: Start prometheus-oauth2 service
+  systemd:
+    name: prometheus-oauth2
+    state: started
+    daemon_reload: True
+    masked: False
+    enabled: True
+  tags:
+    - prometheus
+    - oauth2
+
+- name: Remove install directory
+  file:
+    path: "/usr/local/src/oauth2-proxy-v{{ prometheus_oauth2_version }}.linux-amd64"
+    state: absent
+  tags:
+    - prometheus
+    - oauth2
+
+...

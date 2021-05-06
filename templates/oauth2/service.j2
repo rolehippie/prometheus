@@ -1,0 +1,15 @@
+[Unit]
+Description=OAuth2 Proxy for Prometheus
+
+After=network.target
+
+[Service]
+Restart=always
+KillMode=process
+User=prometheus
+EnvironmentFile=/etc/default/prometheus-oauth2
+ExecStart=/usr/bin/prometheus-oauth2
+ExecReload=/bin/kill -HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target

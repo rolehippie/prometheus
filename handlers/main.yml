@@ -6,4 +6,10 @@
     state: restarted
     daemon_reload: True
 
+- name: Restart prometheus-oauth2
+  systemd:
+    name: prometheus-oauth2
+    state: restarted
+    daemon_reload: yes
+
 ...

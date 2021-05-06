@@ -19,6 +19,20 @@ Building and improving this Ansible role have been sponsored by my employer **Pr
   * [prometheus_download](#prometheus_download)
   * [prometheus_evaluation_interval](#prometheus_evaluation_interval)
   * [prometheus_extra_rules](#prometheus_extra_rules)
+  * [prometheus_listen_address](#prometheus_listen_address)
+  * [prometheus_oauth2_allowed_groups](#prometheus_oauth2_allowed_groups)
+  * [prometheus_oauth2_client_id](#prometheus_oauth2_client_id)
+  * [prometheus_oauth2_client_secret](#prometheus_oauth2_client_secret)
+  * [prometheus_oauth2_cookie_secret](#prometheus_oauth2_cookie_secret)
+  * [prometheus_oauth2_download](#prometheus_oauth2_download)
+  * [prometheus_oauth2_enabled](#prometheus_oauth2_enabled)
+  * [prometheus_oauth2_keycloak_url](#prometheus_oauth2_keycloak_url)
+  * [prometheus_oauth2_listen_address](#prometheus_oauth2_listen_address)
+  * [prometheus_oauth2_provider](#prometheus_oauth2_provider)
+  * [prometheus_oauth2_static_groups](#prometheus_oauth2_static_groups)
+  * [prometheus_oauth2_static_users](#prometheus_oauth2_static_users)
+  * [prometheus_oauth2_upstream](#prometheus_oauth2_upstream)
+  * [prometheus_oauth2_version](#prometheus_oauth2_version)
   * [prometheus_rule_files](#prometheus_rule_files)
   * [prometheus_scrape_configs](#prometheus_scrape_configs)
   * [prometheus_scrape_interval](#prometheus_scrape_interval)
@@ -147,6 +161,166 @@ prometheus_extra_rules:
     src: path/to/template.j2
   - name: example-to-remove
     state: absent
+```
+
+### prometheus_listen_address
+
+Listen address for the prometheus
+
+#### Default value
+
+```YAML
+prometheus_listen_address: 0.0.0.0:9090
+```
+
+### prometheus_oauth2_allowed_groups
+
+List of groups to allow access
+
+#### Default value
+
+```YAML
+prometheus_oauth2_allowed_groups: []
+```
+
+#### Example usage
+
+```YAML
+prometheus_oauth2_allowed_groups:
+  - /Group1
+  - /Group2
+  - /Group3
+```
+
+### prometheus_oauth2_client_id
+
+Client ID for OAuth2 authentication
+
+#### Default value
+
+```YAML
+prometheus_oauth2_client_id:
+```
+
+### prometheus_oauth2_client_secret
+
+Client secret for OAuth2 authentication
+
+#### Default value
+
+```YAML
+prometheus_oauth2_client_secret:
+```
+
+### prometheus_oauth2_cookie_secret
+
+Cookie secret used by OAuth2 proxy
+
+#### Default value
+
+```YAML
+prometheus_oauth2_cookie_secret:
+```
+
+### prometheus_oauth2_download
+
+#### Default value
+
+```YAML
+prometheus_oauth2_download: https://github.com/oauth2-proxy/oauth2-proxy/releases/download/v{{
+  prometheus_oauth2_version }}/oauth2-proxy-v{{ prometheus_oauth2_version }}.linux-amd64.tar.gz
+```
+
+### prometheus_oauth2_enabled
+
+URL of the OAuth2 Proxy to download
+
+#### Default value
+
+```YAML
+prometheus_oauth2_enabled: false
+```
+
+### prometheus_oauth2_keycloak_url
+
+URL of the Keycloak realm
+
+#### Default value
+
+```YAML
+prometheus_oauth2_keycloak_url:
+```
+
+### prometheus_oauth2_listen_address
+
+Listem address for the OAuth2 proxy
+
+#### Default value
+
+```YAML
+prometheus_oauth2_listen_address: 0.0.0.0:9089
+```
+
+### prometheus_oauth2_provider
+
+Provider for OAuth2 authentication
+
+#### Default value
+
+```YAML
+prometheus_oauth2_provider: keycloak
+```
+
+### prometheus_oauth2_static_groups
+
+List of groups assigned to static users
+
+#### Default value
+
+```YAML
+prometheus_oauth2_static_groups: []
+```
+
+### prometheus_oauth2_static_users
+
+List of users to allow access
+
+#### Default value
+
+```YAML
+prometheus_oauth2_static_users: []
+```
+
+#### Example usage
+
+```YAML
+prometheus_oauth2_static_users:
+  - username: username1
+    password: p455w0rd
+  - username: username2
+    password: p455w0rd
+  - username: username3
+    password: p455w0rd
+```
+
+### prometheus_oauth2_upstream
+
+Upstream target for the OAuth2 proxy
+
+#### Default value
+
+```YAML
+prometheus_oauth2_upstream: http://{{ prometheus_listen_address }}
+```
+
+### prometheus_oauth2_version
+
+Version of the OAuth2 Proxy to download
+
+#### Default value
+
+```YAML
+prometheus_oauth2_version: 7.1.3
 ```
 
 ### prometheus_rule_files

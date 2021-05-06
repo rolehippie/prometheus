@@ -1,0 +1,31 @@
+OAUTH2_PROXY_HTTP_ADDRESS={{ prometheus_oauth2_listen_address }}
+OAUTH2_PROXY_REVERSE_PROXY=true
+OAUTH2_PROXY_UPSTREAMS={{ prometheus_oauth2_upstream }}
+OAUTH2_PROXY_FOOTER=-
+
+OAUTH2_PROXY_COOKIE_SECRET={{ prometheus_oauth2_cookie_secret }}
+OAUTH2_PROXY_COOKIE_NAME=prometheus
+OAUTH2_PROXY_COOKIE_SECURE={{ (True if prometheus_domain.startswith('https://') else False) | lower }}
+OAUTH2_PROXY_COOKIE_EXPIRE=24h0m0s
+
+OAUTH2_PROXY_CLIENT_ID={{ prometheus_oauth2_client_id }}
+OAUTH2_PROXY_CLIENT_SECRET={{ prometheus_oauth2_client_secret }}
+OAUTH2_PROXY_EMAIL_DOMAINS=*
+{% if prometheus_oauth2_provider == 'keycloak' %}
+
+OAUTH2_PROXY_PROVIDER=keycloak
+OAUTH2_PROXY_PROVIDER_DISPLAY_NAME=Keycloak
+OAUTH2_PROXY_LOGIN_URL={{ prometheus_oauth2_keycloak_url }}/protocol/openid-connect/auth
+OAUTH2_PROXY_REDEEM_URL={{ prometheus_oauth2_keycloak_url }}/protocol/openid-connect/token
+OAUTH2_PROXY_VALIDATE_URL={{ prometheus_oauth2_keycloak_url }}/protocol/openid-connect/userinfo
+{% endif %}
+{% if prometheus_oauth2_allowed_groups | default(False) %}
+
+OAUTH2_PROXY_ALLOWED_GROUPS={{ prometheus_oauth2_allowed_groups | join(',') }}
+{% endif %}
+{% if prometheus_oauth2_static_users | default(False) %}
+
+OAUTH2_PROXY_DISPLAY_HTPASSWD_FORM=false
+OAUTH2_PROXY_HTPASSWD_FILE=/etc/prometheus/htpasswd
+OAUTH2_PROXY_HTPASSWD_USER_GROUPS={{ prometheus_oauth2_static_groups | join(',') }}
+{% endif %}
