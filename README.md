@@ -1,6 +1,6 @@
 # prometheus
 
-[![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&logoColor=white)](https://github.com/rolehippie/prometheus) [![Build Status](https://img.shields.io/drone/build/rolehippie/prometheus/master?logo=drone)](https://cloud.drone.io/rolehippie/prometheus) [![License: Apache-2.0](https://img.shields.io/github/license/rolehippie/prometheus)](https://github.com/rolehippie/prometheus/blob/master/LICENSE) 
+[![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&logoColor=white)](https://github.com/rolehippie/prometheus) [![Testing Build](https://github.com/rolehippie/prometheus/workflows/testing/badge.svg)](https://github.com/rolehippie/prometheus/actions?query=workflow%3Atesting) [![Readme Build](https://github.com/rolehippie/prometheus/workflows/readme/badge.svg)](https://github.com/rolehippie/prometheus/actions?query=workflow%3Areadme) [![Galaxy Build](https://github.com/rolehippie/prometheus/workflows/galaxy/badge.svg)](https://github.com/rolehippie/prometheus/actions?query=workflow%3Agalaxy) [![License: Apache-2.0](https://img.shields.io/github/license/rolehippie/prometheus)](https://github.com/rolehippie/prometheus/blob/master/LICENSE) 
 
 Ansible role to install and configure Prometheus. 
 
