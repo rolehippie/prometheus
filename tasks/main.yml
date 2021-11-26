@@ -49,13 +49,13 @@
   failed_when: False
   changed_when: False
   check_mode: False
-  command: /usr/bin/prometheus --version
+  shell: /usr/bin/prometheus --version 2>&1
   tags:
     - prometheus
 
 - name: Fact version change
   set_fact:
-    prometheus_version_changed: "{{ prometheus_version_check.rc != 0 or (prometheus_version_check.stderr_lines is defined and prometheus_version not in prometheus_version_check.stderr_lines[0]) | bool }}"
+    prometheus_version_changed: "{{ prometheus_version_check.rc != 0 or (prometheus_version_check.stdout_lines is defined and prometheus_version not in prometheus_version_check.stdout_lines[0]) | bool }}"
   tags:
     - prometheus
 
