@@ -2,7 +2,7 @@
 ---
 # @var prometheus_version:description: Version of the release to install
 # renovate: datasource=github-releases depName=prometheus/prometheus
-prometheus_version: 2.19.1
+prometheus_version: 2.32.1
 
 # @var prometheus_download:description: URL to the archive of the release to install
 prometheus_download: "https://github.com/prometheus/prometheus/releases/download/v{{ prometheus_version }}/prometheus-{{ prometheus_version }}.linux-amd64.tar.gz"
@@ -94,7 +94,7 @@ prometheus_oauth2_enabled: False
 
 # @var prometheus_oauth2_version:description: Version of the OAuth2 Proxy to download
 # renovate: datasource=github-releases depName=oauth2-proxy/oauth2-proxy
-prometheus_oauth2_version: 7.1.3
+prometheus_oauth2_version: 7.2.1
 
 # @var prometheus_oauth2_enabled:description: URL of the OAuth2 Proxy to download
 prometheus_oauth2_download: "https://github.com/oauth2-proxy/oauth2-proxy/releases/download/v{{ prometheus_oauth2_version }}/oauth2-proxy-v{{ prometheus_oauth2_version }}.linux-amd64.tar.gz"
