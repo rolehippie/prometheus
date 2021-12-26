@@ -320,7 +320,7 @@ Version of the OAuth2 Proxy to download
 #### Default value
 
 ```YAML
-prometheus_oauth2_version: 7.1.3
+prometheus_oauth2_version: 7.2.1
 ```
 
 ### prometheus_rule_files
@@ -383,7 +383,7 @@ Version of the release to install
 #### Default value
 
 ```YAML
-prometheus_version: 2.19.1
+prometheus_version: 2.32.1
 ```
 
 ## Dependencies
