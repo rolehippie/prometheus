@@ -249,7 +249,7 @@
 
 - name: Include oauth2 tasks
   when: prometheus_oauth2_enabled | default(False)
-  include: oauth2.yml
+  include_tasks: oauth2.yml
   tags:
     - prometheus
     - oauth2
