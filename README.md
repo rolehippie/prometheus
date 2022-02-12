@@ -383,7 +383,7 @@ Version of the release to install
 #### Default value
 
 ```YAML
-prometheus_version: 2.32.1
+prometheus_version: 2.33.3
 ```
 
 ## Dependencies
