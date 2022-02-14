@@ -13,11 +13,11 @@ OAUTH2_PROXY_CLIENT_SECRET={{ prometheus_oauth2_client_secret }}
 OAUTH2_PROXY_EMAIL_DOMAINS=*
 {% if prometheus_oauth2_provider == 'keycloak' %}
 
-OAUTH2_PROXY_PROVIDER=keycloak
+OAUTH2_PROXY_SCOPE=openid profile email
+OAUTH2_PROXY_PROVIDER=keycloak-oidc
 OAUTH2_PROXY_PROVIDER_DISPLAY_NAME=Keycloak
-OAUTH2_PROXY_LOGIN_URL={{ prometheus_oauth2_keycloak_url }}/protocol/openid-connect/auth
-OAUTH2_PROXY_REDEEM_URL={{ prometheus_oauth2_keycloak_url }}/protocol/openid-connect/token
-OAUTH2_PROXY_VALIDATE_URL={{ prometheus_oauth2_keycloak_url }}/protocol/openid-connect/userinfo
+OAUTH2_PROXY_REDIRECT_URL={{ prometheus_domain }}/oauth2/callback
+OAUTH2_PROXY_OIDC_ISSUER_URL={{ prometheus_oauth2_keycloak_url }}
 {% endif %}
 {% if prometheus_oauth2_allowed_groups | default(False) %}
 
