@@ -128,7 +128,6 @@
     - Restart prometheus
   loop:
     - prometheus
-    - tsdb
     - promtool
   copy:
     src: "/usr/local/src/prometheus-{{ prometheus_version }}.linux-amd64/{{ item }}"
@@ -137,6 +136,13 @@
     owner: root
     group: root
     mode: u=rwx,g=rx,o=rx
+  tags:
+    - prometheus
+
+- name: Drop tsdb binary
+  file:
+    path: /usr/bin/tsdb
+    state: absent
   tags:
     - prometheus
 
