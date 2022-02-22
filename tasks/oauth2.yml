@@ -82,6 +82,9 @@
   template:
     src: oauth2/default.j2
     dest: /etc/default/prometheus-oauth2
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
   tags:
     - prometheus
     - oauth2
@@ -92,6 +95,9 @@
   template:
     src: oauth2/service.j2
     dest: /etc/systemd/system/prometheus-oauth2.service
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
   tags:
     - prometheus
     - oauth2

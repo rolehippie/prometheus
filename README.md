@@ -36,6 +36,7 @@ Building and improving this Ansible role have been sponsored by my employer **Pr
   * [prometheus_rule_files](#prometheus_rule_files)
   * [prometheus_scrape_configs](#prometheus_scrape_configs)
   * [prometheus_scrape_interval](#prometheus_scrape_interval)
+  * [prometheus_tsdb_retention_size](#prometheus_tsdb_retention_size)
   * [prometheus_tsdb_retention_time](#prometheus_tsdb_retention_time)
   * [prometheus_version](#prometheus_version)
 * [Dependencies](#dependencies)
@@ -364,6 +365,16 @@ Global default scrape interval
 
 ```YAML
 prometheus_scrape_interval: 15s
+```
+
+### prometheus_tsdb_retention_size
+
+Retention size to define the maximum size of the data
+
+#### Default value
+
+```YAML
+prometheus_tsdb_retention_size:
 ```
 
 ### prometheus_tsdb_retention_time

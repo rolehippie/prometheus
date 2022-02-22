@@ -20,6 +20,9 @@ prometheus_evaluation_interval: 15s
 # @var prometheus_tsdb_retention_time:description: Retention time to define the maximum age of the data
 prometheus_tsdb_retention_time: 30d
 
+# @var prometheus_tsdb_retention_size:description: Retention size to define the maximum size of the data
+prometheus_tsdb_retention_size:
+
 # @var prometheus_rule_files:description: List of paths to read rule files from
 prometheus_rule_files:
   - /etc/prometheus/rules/*.yml

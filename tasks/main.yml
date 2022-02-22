@@ -29,6 +29,7 @@
     path: "{{ item }}"
     owner: prometheus
     group: prometheus
+    mode: u=rwx,g=rx,o=rx
     state: directory
   tags:
     - prometheus
@@ -40,6 +41,7 @@
     path: "{{ item }}"
     owner: prometheus
     group: prometheus
+    mode: u=rwx,g=rx,o=rx
     state: directory
   tags:
     - prometheus
@@ -154,6 +156,7 @@
     dest: /etc/prometheus/config.yml
     owner: prometheus
     group: prometheus
+    mode: u=rw,g=r,o=r
   tags:
     - prometheus
 
@@ -224,6 +227,9 @@
   template:
     src: default.j2
     dest: /etc/default/prometheus
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
   tags:
     - prometheus
 
@@ -233,6 +239,9 @@
   template:
     src: service.j2
     dest: /etc/systemd/system/prometheus.service
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
   tags:
     - prometheus
 
