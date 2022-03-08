@@ -1,47 +1,48 @@
 # prometheus
 
-[![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&logoColor=white)](https://github.com/rolehippie/prometheus) [![Testing Build](https://github.com/rolehippie/prometheus/workflows/testing/badge.svg)](https://github.com/rolehippie/prometheus/actions?query=workflow%3Atesting) [![Readme Build](https://github.com/rolehippie/prometheus/workflows/readme/badge.svg)](https://github.com/rolehippie/prometheus/actions?query=workflow%3Areadme) [![Galaxy Build](https://github.com/rolehippie/prometheus/workflows/galaxy/badge.svg)](https://github.com/rolehippie/prometheus/actions?query=workflow%3Agalaxy) [![License: Apache-2.0](https://img.shields.io/github/license/rolehippie/prometheus)](https://github.com/rolehippie/prometheus/blob/master/LICENSE) 
+[![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&logoColor=white)](https://github.com/rolehippie/prometheus) [![Testing Build](https://github.com/rolehippie/prometheus/workflows/testing/badge.svg)](https://github.com/rolehippie/prometheus/actions?query=workflow%3Atesting) [![Readme Build](https://github.com/rolehippie/prometheus/workflows/readme/badge.svg)](https://github.com/rolehippie/prometheus/actions?query=workflow%3Areadme) [![Galaxy Build](https://github.com/rolehippie/prometheus/workflows/galaxy/badge.svg)](https://github.com/rolehippie/prometheus/actions?query=workflow%3Agalaxy) [![License: Apache-2.0](https://img.shields.io/github/license/rolehippie/prometheus)](https://github.com/rolehippie/prometheus/blob/master/LICENSE)
 
-Ansible role to install and configure Prometheus. 
+Ansible role to install and configure Prometheus.
 
-## Sponsor 
+## Sponsor
 
-[![Proact Deutschland GmbH](https://proact.eu/wp-content/uploads/2020/03/proact-logo.png)](https://proact.eu) 
+[![Proact Deutschland GmbH](https://proact.eu/wp-content/uploads/2020/03/proact-logo.png)](https://proact.eu)
 
 Building and improving this Ansible role have been sponsored by my employer **Proact Deutschland GmbH**.
 
 ## Table of content
 
-* [Default Variables](#default-variables)
-  * [prometheus_alertmanagers](#prometheus_alertmanagers)
-  * [prometheus_default_rules](#prometheus_default_rules)
-  * [prometheus_domain](#prometheus_domain)
-  * [prometheus_download](#prometheus_download)
-  * [prometheus_evaluation_interval](#prometheus_evaluation_interval)
-  * [prometheus_extra_rules](#prometheus_extra_rules)
-  * [prometheus_listen_address](#prometheus_listen_address)
-  * [prometheus_oauth2_allowed_groups](#prometheus_oauth2_allowed_groups)
-  * [prometheus_oauth2_client_id](#prometheus_oauth2_client_id)
-  * [prometheus_oauth2_client_secret](#prometheus_oauth2_client_secret)
-  * [prometheus_oauth2_cookie_secret](#prometheus_oauth2_cookie_secret)
-  * [prometheus_oauth2_download](#prometheus_oauth2_download)
-  * [prometheus_oauth2_enabled](#prometheus_oauth2_enabled)
-  * [prometheus_oauth2_keycloak_url](#prometheus_oauth2_keycloak_url)
-  * [prometheus_oauth2_listen_address](#prometheus_oauth2_listen_address)
-  * [prometheus_oauth2_provider](#prometheus_oauth2_provider)
-  * [prometheus_oauth2_static_groups](#prometheus_oauth2_static_groups)
-  * [prometheus_oauth2_static_users](#prometheus_oauth2_static_users)
-  * [prometheus_oauth2_upstream](#prometheus_oauth2_upstream)
-  * [prometheus_oauth2_version](#prometheus_oauth2_version)
-  * [prometheus_rule_files](#prometheus_rule_files)
-  * [prometheus_scrape_configs](#prometheus_scrape_configs)
-  * [prometheus_scrape_interval](#prometheus_scrape_interval)
-  * [prometheus_tsdb_retention_size](#prometheus_tsdb_retention_size)
-  * [prometheus_tsdb_retention_time](#prometheus_tsdb_retention_time)
-  * [prometheus_version](#prometheus_version)
-* [Dependencies](#dependencies)
-* [License](#license)
-* [Author](#author)
+- [Default Variables](#default-variables)
+  - [prometheus_alertmanagers](#prometheus_alertmanagers)
+  - [prometheus_default_rules](#prometheus_default_rules)
+  - [prometheus_domain](#prometheus_domain)
+  - [prometheus_download](#prometheus_download)
+  - [prometheus_evaluation_interval](#prometheus_evaluation_interval)
+  - [prometheus_extra_rules](#prometheus_extra_rules)
+  - [prometheus_listen_address](#prometheus_listen_address)
+  - [prometheus_oauth2_allowed_groups](#prometheus_oauth2_allowed_groups)
+  - [prometheus_oauth2_client_id](#prometheus_oauth2_client_id)
+  - [prometheus_oauth2_client_secret](#prometheus_oauth2_client_secret)
+  - [prometheus_oauth2_cookie_secret](#prometheus_oauth2_cookie_secret)
+  - [prometheus_oauth2_download](#prometheus_oauth2_download)
+  - [prometheus_oauth2_enabled](#prometheus_oauth2_enabled)
+  - [prometheus_oauth2_keycloak_url](#prometheus_oauth2_keycloak_url)
+  - [prometheus_oauth2_listen_address](#prometheus_oauth2_listen_address)
+  - [prometheus_oauth2_provider](#prometheus_oauth2_provider)
+  - [prometheus_oauth2_static_groups](#prometheus_oauth2_static_groups)
+  - [prometheus_oauth2_static_users](#prometheus_oauth2_static_users)
+  - [prometheus_oauth2_upstream](#prometheus_oauth2_upstream)
+  - [prometheus_oauth2_version](#prometheus_oauth2_version)
+  - [prometheus_rule_files](#prometheus_rule_files)
+  - [prometheus_scrape_configs](#prometheus_scrape_configs)
+  - [prometheus_scrape_interval](#prometheus_scrape_interval)
+  - [prometheus_tsdb_retention_size](#prometheus_tsdb_retention_size)
+  - [prometheus_tsdb_retention_time](#prometheus_tsdb_retention_time)
+  - [prometheus_version](#prometheus_version)
+- [Discovered Tags](#discovered-tags)
+- [Dependencies](#dependencies)
+- [License](#license)
+- [Author](#author)
 
 ---
 
@@ -394,12 +395,19 @@ Version of the release to install
 #### Default value
 
 ```YAML
-prometheus_version: 2.33.3
+prometheus_version: 2.33.4
 ```
+
+## Discovered Tags
+
+**_oauth2_**
+
+**_prometheus_**
+
 
 ## Dependencies
 
-* [rolehippie.docker](https://github.com/rolehippie/docker)
+- [rolehippie.docker](https://github.com/rolehippie/docker)
 
 ## License
 
