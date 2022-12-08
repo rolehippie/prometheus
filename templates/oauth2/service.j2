@@ -2,14 +2,49 @@
 Description=OAuth2 Proxy for Prometheus
 
 After=network.target
+{% if prometheus_installation == 'docker' %}
+
+Wants=docker.service
+After=docker.service
+{% endif %}
 
 [Service]
 Restart=always
 KillMode=process
-User=prometheus
+
+EnvironmentFile=/etc/environment
+{% if prometheus_installation == 'docker' %}
+
+ExecStop=/bin/sh -c '/usr/bin/docker ps | /bin/grep %p 1> /dev/null && /usr/bin/docker stop %p || true'
+ExecStartPre=/bin/sh -c '/usr/bin/docker ps | /bin/grep %p 1> /dev/null && /usr/bin/docker kill %p || true'
+ExecStartPre=/bin/sh -c '/usr/bin/docker ps -a | /bin/grep %p 1> /dev/null && /usr/bin/docker rm %p || true'
+ExecStartPre=/usr/bin/docker pull {{ prometheus_oauth2_image }}
+ExecStart=/usr/bin/docker run --rm \
+  --name %p \
+  --hostname %p \
+  --env-file /etc/default/prometheus-oauth2 \
+{% for item in prometheus_oauth2_default_labels + prometheus_oauth2_extra_labels %}
+  --label {{ item }} \
+{% endfor %}
+{% if prometheus_oauth2_network | default(False) %}
+  --network {{ prometheus_oauth2_network }} \
+{% endif %}
+{% if prometheus_oauth2_static_users | default(False) %}
+  --volume /etc/prometheus/htpasswd:/etc/prometheus/htpasswd \
+{% endif %}
+{% for item in prometheus_oauth2_default_publish + prometheus_oauth2_extra_publish %}
+  --publish {{ item }} \
+{% endfor %}
+  {{ prometheus_oauth2_image }}
+{% else %}
 EnvironmentFile=/etc/default/prometheus-oauth2
+
+User=prometheus
+Group=prometheus
+
 ExecStart=/usr/bin/prometheus-oauth2
 ExecReload=/bin/kill -HUP $MAINPID
+{% endif %}
 
 [Install]
 WantedBy=multi-user.target

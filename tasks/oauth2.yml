@@ -13,6 +13,8 @@
     - oauth2
 
 - name: Check existing install
+  when:
+    - prometheus_installation == 'native'
   register: prometheus_oauth2_version_check
   failed_when: False
   changed_when: False
@@ -23,6 +25,8 @@
     - oauth2
 
 - name: Fact version change
+  when:
+    - prometheus_installation == 'native'
   set_fact:
     prometheus_oauth2_version_changed: "{{ prometheus_oauth2_version_check.rc != 0 or (prometheus_oauth2_version_check.stdout_lines is defined and prometheus_oauth2_version not in prometheus_oauth2_version_check.stdout_lines[0]) | bool }}"
   tags:
@@ -30,7 +34,9 @@
     - oauth2
 
 - name: Download release tarball
-  when: prometheus_oauth2_version_changed
+  when:
+    - prometheus_installation == 'native'
+    - prometheus_oauth2_version_changed
   unarchive:
     src: "{{ prometheus_oauth2_download }}"
     dest: /usr/local/src
@@ -42,7 +48,10 @@
     - oauth2
 
 - name: Copy oauth2 binary
-  when: prometheus_oauth2_version_changed and not ansible_check_mode
+  when:
+    - prometheus_installation == 'native'
+    - prometheus_oauth2_version_changed
+    - not ansible_check_mode
   notify:
     - Restart prometheus-oauth2
   copy:
@@ -68,9 +77,9 @@
     name: "{{ item.username }}"
     password: "{{ item.password }}"
     crypt_scheme: bcrypt
-    owner: prometheus
-    group: prometheus
-    mode: u=rw,g=r,o=
+    owner: "{{ 'prometheus' if prometheus_installation == 'native' else 'nobody' }}"
+    group: "{{ 'prometheus' if prometheus_installation == 'native' else 'nogroup' }}"
+    mode: "{{ 'u=rw,g=r,o=' if prometheus_installation == 'native' else 'u=rw,g=r,o=r' }}"
     state: "{{ item.state | default('present') }}"
   tags:
     - prometheus
@@ -114,6 +123,8 @@
     - oauth2
 
 - name: Remove install directory
+  when:
+    - prometheus_installation == 'native'
   file:
     path: "/usr/local/src/oauth2-proxy-v{{ prometheus_oauth2_version }}.linux-amd64"
     state: absent

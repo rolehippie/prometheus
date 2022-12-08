@@ -1,11 +1,69 @@
 # Standards: 1.2
 ---
+# @var prometheus_installation:description: Select installation method, could be native or docker
+prometheus_installation: native
+
 # @var prometheus_version:description: Version of the release to install
 # renovate: datasource=github-releases depName=prometheus/prometheus
 prometheus_version: 2.40.5
 
 # @var prometheus_download:description: URL to the archive of the release to install
 prometheus_download: "https://github.com/prometheus/prometheus/releases/download/v{{ prometheus_version }}/prometheus-{{ prometheus_version }}.linux-amd64.tar.gz"
+
+# @var prometheus_image:description: Docker image to use for deployment
+prometheus_image: "quay.io/prometheus/prometheus:v{{ prometheus_version }}"
+
+# @var prometheus_network:description: Optional docker network to attach
+prometheus_network:
+
+# @var prometheus_default_publish:description: List of default port publishing for docker
+# @var prometheus_default_publish:example: >
+# prometheus_default_publish:
+#   - 127.0.0.1:9090:9090
+# @end
+prometheus_default_publish: []
+
+# @var prometheus_extra_publish:description: List of extra port publishing for docker
+# @var prometheus_extra_publish:example: >
+# prometheus_extra_publish:
+#   - 127.0.0.1:9000:9000
+# @end
+prometheus_extra_publish: []
+
+# @var prometheus_default_labels:description: List of default labels to assign to docker
+prometheus_default_labels: []
+
+# @var prometheus_extra_labels:description: List of extra labels to assign to docker
+prometheus_extra_labels: []
+
+# @var prometheus_default_folders:description: List of default folders to create
+prometheus_default_folders:
+  - /etc/prometheus
+  - /etc/prometheus/rules
+  - /var/lib/prometheus
+
+# @var prometheus_extra_folders:description: List of extra folders to create
+# @var prometheus_extra_folders:example: >
+# prometheus_extra_folders:
+#   - /path/to/host/folder1
+#   - /path/to/host/folder2
+#   - /path/to/host/folder3
+# @end
+prometheus_extra_folders: []
+
+# @var prometheus_default_volumes:description: List of default volumes to mount for docker
+prometheus_default_volumes:
+  - /var/lib/prometheus:/var/lib/prometheus
+  - /etc/prometheus/rules:/etc/prometheus/rules
+
+# @var prometheus_extra_volumes:description: List of extra volumes to mount for docker
+# @var prometheus_extra_volumes:example: >
+# prometheus_extra_volumes:
+#   - /path/to/host/folder1:/path/within/container1
+#   - /path/to/host/folder2:/path/within/container2
+#   - /path/to/host/folder3:/path/within/container3
+# @end
+prometheus_extra_volumes: []
 
 # @var prometheus_domain:description: Domain for external access
 # @var prometheus_domain:example: $ "https://prometheus.example.com"
@@ -102,8 +160,34 @@ prometheus_oauth2_version: 7.4.0
 # @var prometheus_oauth2_enabled:description: URL of the OAuth2 Proxy to download
 prometheus_oauth2_download: "https://github.com/oauth2-proxy/oauth2-proxy/releases/download/v{{ prometheus_oauth2_version }}/oauth2-proxy-v{{ prometheus_oauth2_version }}.linux-amd64.tar.gz"
 
+# @var prometheus_image:description: Docker image to use for deployment on OAuth2 Proxy
+prometheus_oauth2_image: "quay.io/oauth2-proxy/oauth2-proxy:v{{ prometheus_oauth2_version }}"
+
+# @var prometheus_network:description: Optional docker network to attach on OAuth2 Proxy
+prometheus_oauth2_network: "{{ prometheus_network }}"
+
+# @var prometheus_oauth2_default_publish:description: List of default port publishing for docker on OAuth2 Proxy
+# @var prometheus_oauth2_default_publish:example: >
+# prometheus_oauth2_default_publish:
+#   - 127.0.0.1:9089:9089
+# @end
+prometheus_oauth2_default_publish: []
+
+# @var prometheus_oauth2_extra_publish:description: List of extra port publishing for docker on OAuth2 Proxy
+# @var prometheus_oauth2_extra_publish:example: >
+# prometheus_oauth2_extra_publish:
+#   - 127.0.0.1:9089:9089
+# @end
+prometheus_oauth2_extra_publish: []
+
+# @var prometheus_oauth2_default_labels:description: List of default labels to assign to docker on OAuth2 Proxy
+prometheus_oauth2_default_labels: []
+
+# @var prometheus_oauth2_extra_labels:description: List of extra labels to assign to docker on OAuth2 Proxy
+prometheus_oauth2_extra_labels: []
+
 # @var prometheus_oauth2_upstream:description: Upstream target for the OAuth2 proxy
-prometheus_oauth2_upstream: "http://{{ prometheus_listen_address }}"
+prometheus_oauth2_upstream: "http://{{ prometheus_listen_address if prometheus_installation == 'native' else 'prometheus:9090' }}"
 
 # @var prometheus_oauth2_listen_address:description: Listem address for the OAuth2 proxy
 prometheus_oauth2_listen_address: 0.0.0.0:9089

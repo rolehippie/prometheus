@@ -1,6 +1,8 @@
 # Standards: 1.2
 ---
 - name: Create system group
+  when:
+    - prometheus_installation == 'native'
   group:
     name: prometheus
     system: True
@@ -9,6 +11,8 @@
     - prometheus
 
 - name: Create system user
+  when:
+    - prometheus_installation == 'native'
   user:
     name: prometheus
     group: prometheus
@@ -21,32 +25,20 @@
   tags:
     - prometheus
 
-- name: Create config directories
-  loop:
-    - /etc/prometheus
-    - /etc/prometheus/rules
+- name: Create required directories
+  loop: "{{ prometheus_default_folders + prometheus_extra_folders }}"
   file:
     path: "{{ item }}"
-    owner: prometheus
-    group: prometheus
-    mode: u=rwx,g=rx,o=rx
-    state: directory
-  tags:
-    - prometheus
-
-- name: Create state directories
-  loop:
-    - /var/lib/prometheus
-  file:
-    path: "{{ item }}"
-    owner: prometheus
-    group: prometheus
+    owner: "{{ 'prometheus' if prometheus_installation == 'native' else 'nobody' }}"
+    group: "{{ 'prometheus' if prometheus_installation == 'native' else 'nogroup' }}"
     mode: u=rwx,g=rx,o=rx
     state: directory
   tags:
     - prometheus
 
 - name: Check existing install
+  when:
+    - prometheus_installation == 'native'
   register: prometheus_version_check
   failed_when: False
   changed_when: False
@@ -56,13 +48,17 @@
     - prometheus
 
 - name: Fact version change
+  when:
+    - prometheus_installation == 'native'
   set_fact:
     prometheus_version_changed: "{{ prometheus_version_check.rc != 0 or (prometheus_version_check.stdout_lines is defined and prometheus_version not in prometheus_version_check.stdout_lines[0]) | bool }}"
   tags:
     - prometheus
 
 - name: Download release tarball
-  when: prometheus_version_changed
+  when:
+    - prometheus_installation == 'native'
+    - prometheus_version_changed
   notify:
     - Restart prometheus
   unarchive:
@@ -75,7 +71,10 @@
     - prometheus
 
 - name: Sync libraries folder
-  when: prometheus_version_changed and not ansible_check_mode
+  when:
+    - prometheus_installation == 'native'
+    - prometheus_version_changed
+    - not ansible_check_mode
   notify:
     - Restart prometheus
   delegate_to: "{{ inventory_hostname }}"
@@ -88,7 +87,10 @@
     - prometheus
 
 - name: Fix libraries owner
-  when: prometheus_version_changed and not ansible_check_mode
+  when:
+    - prometheus_installation == 'native'
+    - prometheus_version_changed
+    - not ansible_check_mode
   notify:
     - Restart prometheus
   file:
@@ -100,7 +102,10 @@
     - prometheus
 
 - name: Sync consoles folder
-  when: prometheus_version_changed and not ansible_check_mode
+  when:
+    - prometheus_installation == 'native'
+    - prometheus_version_changed
+    - not ansible_check_mode
   notify:
     - Restart prometheus
   delegate_to: "{{ inventory_hostname }}"
@@ -113,7 +118,10 @@
     - prometheus
 
 - name: Fix consoles owner
-  when: prometheus_version_changed and not ansible_check_mode
+  when:
+    - prometheus_installation == 'native'
+    - prometheus_version_changed
+    - not ansible_check_mode
   notify:
     - Restart prometheus
   file:
@@ -125,7 +133,10 @@
     - prometheus
 
 - name: Copy downloaded binaries
-  when: prometheus_version_changed and not ansible_check_mode
+  when:
+    - prometheus_installation == 'native'
+    - prometheus_version_changed
+    - not ansible_check_mode
   notify:
     - Restart prometheus
   loop:
@@ -142,6 +153,8 @@
     - prometheus
 
 - name: Drop tsdb binary
+  when:
+    - prometheus_installation == 'native'
   file:
     path: /usr/bin/tsdb
     state: absent
@@ -154,8 +167,8 @@
   template:
     src: config.j2
     dest: /etc/prometheus/config.yml
-    owner: prometheus
-    group: prometheus
+    owner: "{{ 'prometheus' if prometheus_installation == 'native' else 'nobody' }}"
+    group: "{{ 'prometheus' if prometheus_installation == 'native' else 'nogroup' }}"
     mode: u=rw,g=r,o=r
   tags:
     - prometheus
@@ -256,6 +269,8 @@
     - prometheus
 
 - name: Remove install directory
+  when:
+    - prometheus_installation == 'native'
   file:
     path: "/usr/local/src/prometheus-{{ prometheus_version }}.linux-amd64"
     state: absent
