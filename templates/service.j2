@@ -47,6 +47,9 @@ ExecStart=/usr/bin/docker run --rm \
 {% if prometheus_tsdb_retention_size | default(False) %}
   --storage.tsdb.retention.size={{ prometheus_tsdb_retention_size }} \
 {% endif %}
+{% if prometheus_enable_remote_write_receiver | default(False) %}
+  --web.enable-remote-write-receiver \
+{% endif %}
   --web.enable-lifecycle \
   --web.enable-admin-api \
   --web.console.templates=/etc/prometheus/consoles \
