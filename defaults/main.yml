@@ -81,6 +81,9 @@ prometheus_tsdb_retention_time: 30d
 # @var prometheus_tsdb_retention_size:description: Retention size to define the maximum size of the data
 prometheus_tsdb_retention_size:
 
+# @var prometheus_enable_remote_write_receiver:description: Enable remote-write receiver in Prometheus
+prometheus_enable_remote_write_receiver: False
+
 # @var prometheus_rule_files:description: List of paths to read rule files from
 prometheus_rule_files:
   - /etc/prometheus/rules/*.yml
@@ -230,8 +233,5 @@ prometheus_oauth2_static_groups: []
 #     password: p455w0rd
 # @end
 prometheus_oauth2_static_users: []
-
-# @var prometheus_enable_remote_write_receiver:description: Enable Remote-Write Receiver in Prometheus
-prometheus_enable_remote_write_receiver: no
 
 ...
