@@ -231,4 +231,7 @@ prometheus_oauth2_static_groups: []
 # @end
 prometheus_oauth2_static_users: []
 
+# @var prometheus_enable_remote_write_receiver:description: Enable Remote-Write Receiver in Prometheus
+prometheus_enable_remote_write_receiver: no
+
 ...
