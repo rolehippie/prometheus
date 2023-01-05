@@ -1,6 +1,6 @@
 # prometheus
 
-[![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&logoColor=white)](https://github.com/rolehippie/prometheus) [![Testing Build](https://github.com/rolehippie/prometheus/workflows/testing/badge.svg)](https://github.com/rolehippie/prometheus/actions?query=workflow%3Atesting) [![Readme Build](https://github.com/rolehippie/prometheus/workflows/readme/badge.svg)](https://github.com/rolehippie/prometheus/actions?query=workflow%3Areadme) [![Galaxy Build](https://github.com/rolehippie/prometheus/workflows/galaxy/badge.svg)](https://github.com/rolehippie/prometheus/actions?query=workflow%3Agalaxy) [![License: Apache-2.0](https://img.shields.io/github/license/rolehippie/prometheus)](https://github.com/rolehippie/prometheus/blob/master/LICENSE)
+[![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&logoColor=white)](https://github.com/rolehippie/prometheus) [![General Workflow](https://github.com/rolehippie/prometheus/actions/workflows/general.yml/badge.svg)](https://github.com/rolehippie/prometheus/actions/workflows/general.yml) [![Readme Workflow](https://github.com/rolehippie/prometheus/actions/workflows/readme.yml/badge.svg)](https://github.com/rolehippie/prometheus/actions/workflows/readme.yml) [![Galaxy Workflow](https://github.com/rolehippie/prometheus/actions/workflows/galaxy.yml/badge.svg)](https://github.com/rolehippie/prometheus/actions/workflows/galaxy.yml) [![License: Apache-2.0](https://img.shields.io/github/license/rolehippie/prometheus)](https://github.com/rolehippie/prometheus/blob/master/LICENSE) ![Ansible Role](https://img.shields.io/ansible/role/53365)
 
 Ansible role to install and configure Prometheus.
 
@@ -12,20 +12,38 @@ Building and improving this Ansible role have been sponsored by my current and p
 
 - [Default Variables](#default-variables)
   - [prometheus_alertmanagers](#prometheus_alertmanagers)
+  - [prometheus_default_folders](#prometheus_default_folders)
+  - [prometheus_default_labels](#prometheus_default_labels)
+  - [prometheus_default_publish](#prometheus_default_publish)
   - [prometheus_default_rules](#prometheus_default_rules)
+  - [prometheus_default_volumes](#prometheus_default_volumes)
   - [prometheus_domain](#prometheus_domain)
   - [prometheus_download](#prometheus_download)
+  - [prometheus_enable_remote_write_receiver](#prometheus_enable_remote_write_receiver)
   - [prometheus_evaluation_interval](#prometheus_evaluation_interval)
+  - [prometheus_extra_folders](#prometheus_extra_folders)
+  - [prometheus_extra_labels](#prometheus_extra_labels)
+  - [prometheus_extra_publish](#prometheus_extra_publish)
   - [prometheus_extra_rules](#prometheus_extra_rules)
+  - [prometheus_extra_volumes](#prometheus_extra_volumes)
+  - [prometheus_image](#prometheus_image)
+  - [prometheus_installation](#prometheus_installation)
   - [prometheus_listen_address](#prometheus_listen_address)
+  - [prometheus_network](#prometheus_network)
   - [prometheus_oauth2_allowed_groups](#prometheus_oauth2_allowed_groups)
   - [prometheus_oauth2_client_id](#prometheus_oauth2_client_id)
   - [prometheus_oauth2_client_secret](#prometheus_oauth2_client_secret)
   - [prometheus_oauth2_cookie_secret](#prometheus_oauth2_cookie_secret)
+  - [prometheus_oauth2_default_labels](#prometheus_oauth2_default_labels)
+  - [prometheus_oauth2_default_publish](#prometheus_oauth2_default_publish)
   - [prometheus_oauth2_download](#prometheus_oauth2_download)
   - [prometheus_oauth2_enabled](#prometheus_oauth2_enabled)
+  - [prometheus_oauth2_extra_labels](#prometheus_oauth2_extra_labels)
+  - [prometheus_oauth2_extra_publish](#prometheus_oauth2_extra_publish)
+  - [prometheus_oauth2_image](#prometheus_oauth2_image)
   - [prometheus_oauth2_keycloak_url](#prometheus_oauth2_keycloak_url)
   - [prometheus_oauth2_listen_address](#prometheus_oauth2_listen_address)
+  - [prometheus_oauth2_network](#prometheus_oauth2_network)
   - [prometheus_oauth2_provider](#prometheus_oauth2_provider)
   - [prometheus_oauth2_static_groups](#prometheus_oauth2_static_groups)
   - [prometheus_oauth2_static_users](#prometheus_oauth2_static_users)
@@ -66,6 +84,46 @@ prometheus_alertmanagers:
           - loclhost:9093
 ```
 
+### prometheus_default_folders
+
+List of default folders to create
+
+#### Default value
+
+```YAML
+prometheus_default_folders:
+  - /etc/prometheus
+  - /etc/prometheus/rules
+  - /var/lib/prometheus
+```
+
+### prometheus_default_labels
+
+List of default labels to assign to docker
+
+#### Default value
+
+```YAML
+prometheus_default_labels: []
+```
+
+### prometheus_default_publish
+
+List of default port publishing for docker
+
+#### Default value
+
+```YAML
+prometheus_default_publish: []
+```
+
+#### Example usage
+
+```YAML
+prometheus_default_publish:
+  - 127.0.0.1:9090:9090
+```
+
 ### prometheus_default_rules
 
 List of default rule file definitions
@@ -96,6 +154,18 @@ prometheus_default_rules:
     state: absent
 ```
 
+### prometheus_default_volumes
+
+List of default volumes to mount for docker
+
+#### Default value
+
+```YAML
+prometheus_default_volumes:
+  - /var/lib/prometheus:/var/lib/prometheus
+  - /etc/prometheus/rules:/etc/prometheus/rules
+```
+
 ### prometheus_domain
 
 Domain for external access
@@ -123,6 +193,16 @@ prometheus_download: https://github.com/prometheus/prometheus/releases/download/
   prometheus_version }}/prometheus-{{ prometheus_version }}.linux-amd64.tar.gz
 ```
 
+### prometheus_enable_remote_write_receiver
+
+Enable remote-write receiver in Prometheus
+
+#### Default value
+
+```YAML
+prometheus_enable_remote_write_receiver: false
+```
+
 ### prometheus_evaluation_interval
 
 Global default evaluation interval
@@ -131,6 +211,52 @@ Global default evaluation interval
 
 ```YAML
 prometheus_evaluation_interval: 15s
+```
+
+### prometheus_extra_folders
+
+List of extra folders to create
+
+#### Default value
+
+```YAML
+prometheus_extra_folders: []
+```
+
+#### Example usage
+
+```YAML
+prometheus_extra_folders:
+  - /path/to/host/folder1
+  - /path/to/host/folder2
+  - /path/to/host/folder3
+```
+
+### prometheus_extra_labels
+
+List of extra labels to assign to docker
+
+#### Default value
+
+```YAML
+prometheus_extra_labels: []
+```
+
+### prometheus_extra_publish
+
+List of extra port publishing for docker
+
+#### Default value
+
+```YAML
+prometheus_extra_publish: []
+```
+
+#### Example usage
+
+```YAML
+prometheus_extra_publish:
+  - 127.0.0.1:9000:9000
 ```
 
 ### prometheus_extra_rules
@@ -163,6 +289,45 @@ prometheus_extra_rules:
     state: absent
 ```
 
+### prometheus_extra_volumes
+
+List of extra volumes to mount for docker
+
+#### Default value
+
+```YAML
+prometheus_extra_volumes: []
+```
+
+#### Example usage
+
+```YAML
+prometheus_extra_volumes:
+  - /path/to/host/folder1:/path/within/container1
+  - /path/to/host/folder2:/path/within/container2
+  - /path/to/host/folder3:/path/within/container3
+```
+
+### prometheus_image
+
+Docker image to use for deployment on OAuth2 Proxy
+
+#### Default value
+
+```YAML
+prometheus_image: quay.io/prometheus/prometheus:v{{ prometheus_version }}
+```
+
+### prometheus_installation
+
+Select installation method, could be native or docker
+
+#### Default value
+
+```YAML
+prometheus_installation: native
+```
+
 ### prometheus_listen_address
 
 Listen address for the prometheus
@@ -171,6 +336,16 @@ Listen address for the prometheus
 
 ```YAML
 prometheus_listen_address: 0.0.0.0:9090
+```
+
+### prometheus_network
+
+Optional docker network to attach on OAuth2 Proxy
+
+#### Default value
+
+```YAML
+prometheus_network:
 ```
 
 ### prometheus_oauth2_allowed_groups
@@ -222,6 +397,33 @@ Cookie secret used by OAuth2 proxy
 prometheus_oauth2_cookie_secret:
 ```
 
+### prometheus_oauth2_default_labels
+
+List of default labels to assign to docker on OAuth2 Proxy
+
+#### Default value
+
+```YAML
+prometheus_oauth2_default_labels: []
+```
+
+### prometheus_oauth2_default_publish
+
+List of default port publishing for docker on OAuth2 Proxy
+
+#### Default value
+
+```YAML
+prometheus_oauth2_default_publish: []
+```
+
+#### Example usage
+
+```YAML
+prometheus_oauth2_default_publish:
+  - 127.0.0.1:9089:9089
+```
+
 ### prometheus_oauth2_download
 
 #### Default value
@@ -239,6 +441,42 @@ URL of the OAuth2 Proxy to download
 
 ```YAML
 prometheus_oauth2_enabled: false
+```
+
+### prometheus_oauth2_extra_labels
+
+List of extra labels to assign to docker on OAuth2 Proxy
+
+#### Default value
+
+```YAML
+prometheus_oauth2_extra_labels: []
+```
+
+### prometheus_oauth2_extra_publish
+
+List of extra port publishing for docker on OAuth2 Proxy
+
+#### Default value
+
+```YAML
+prometheus_oauth2_extra_publish: []
+```
+
+#### Example usage
+
+```YAML
+prometheus_oauth2_extra_publish:
+  - 127.0.0.1:9089:9089
+```
+
+### prometheus_oauth2_image
+
+#### Default value
+
+```YAML
+prometheus_oauth2_image: quay.io/oauth2-proxy/oauth2-proxy:v{{ prometheus_oauth2_version
+  }}
 ```
 
 ### prometheus_oauth2_keycloak_url
@@ -259,6 +497,14 @@ Listem address for the OAuth2 proxy
 
 ```YAML
 prometheus_oauth2_listen_address: 0.0.0.0:9089
+```
+
+### prometheus_oauth2_network
+
+#### Default value
+
+```YAML
+prometheus_oauth2_network: '{{ prometheus_network }}'
 ```
 
 ### prometheus_oauth2_provider
@@ -310,7 +556,8 @@ Upstream target for the OAuth2 proxy
 #### Default value
 
 ```YAML
-prometheus_oauth2_upstream: http://{{ prometheus_listen_address }}
+prometheus_oauth2_upstream: http://{{ prometheus_listen_address if prometheus_installation
+  == 'native' else 'prometheus:9090' }}
 ```
 
 ### prometheus_oauth2_version
@@ -393,7 +640,7 @@ Version of the release to install
 #### Default value
 
 ```YAML
-prometheus_version: 2.40.5
+prometheus_version: 2.41.0
 ```
 
 ## Discovered Tags

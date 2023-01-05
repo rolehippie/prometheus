@@ -1,5 +1,16 @@
 # Standards: 1.2
 ---
+- name: Install required packages
+  when:
+    - prometheus_installation == 'native'
+  loop:
+    - rsync
+  package:
+    name: "{{ item }}"
+    state: present
+  tags:
+    - prometheus
+
 - name: Create system group
   when:
     - prometheus_installation == 'native'
