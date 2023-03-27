@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/rolehippie/prometheus/compare/v1.1.0...v1.2.0) (2023-03-27)
+
+
+### Features
+
+* **deps:** update dependency prometheus/prometheus to v2.43.0+stringlabels ([5bce7ca](https://github.com/rolehippie/prometheus/commit/5bce7caf7e1761dbd0fdb04b281b2af7fbba229a))
+
 ## [1.1.0](https://github.com/rolehippie/prometheus/compare/v1.0.0...v1.1.0) (2023-02-06)
 
 
