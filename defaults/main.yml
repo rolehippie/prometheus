@@ -5,7 +5,7 @@ prometheus_installation: native
 
 # @var prometheus_version:description: Version of the release to install
 # renovate: datasource=github-releases depName=prometheus/prometheus
-prometheus_version: 2.43.0+stringlabels
+prometheus_version: 2.43.1+stringlabels
 
 # @var prometheus_download:description: URL to the archive of the release to install
 prometheus_download: "https://github.com/prometheus/prometheus/releases/download/v{{ prometheus_version }}/prometheus-{{ prometheus_version }}.linux-amd64.tar.gz"
