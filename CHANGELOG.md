@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.1](https://github.com/rolehippie/prometheus/compare/v1.4.0...v1.4.1) (2023-07-05)
+
+
+### Bugfixes
+
+* no prometheus user for docker install ([c9473d2](https://github.com/rolehippie/prometheus/commit/c9473d2cf213d74ef60f9cd6f437a91150dfbfc8))
+
 ## [1.4.0](https://github.com/rolehippie/prometheus/compare/v1.3.0...v1.4.0) (2023-06-26)
 
 
