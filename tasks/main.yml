@@ -194,8 +194,8 @@
   get_url:
     url: "{{ item.url }}"
     dest: "{{ item.path | default('/etc/prometheus/rules') }}/{{ item.name }}.yml"
-    owner: prometheus
-    group: prometheus
+    owner: "{{ 'prometheus' if prometheus_installation == 'native' else 'nobody' }}"
+    group: "{{ 'prometheus' if prometheus_installation == 'native' else 'nogroup' }}"
     mode: o=rw,g=r,o=r
   tags:
     - prometheus
@@ -210,8 +210,8 @@
   copy:
     content: "{{ item.content }}"
     dest: "{{ item.path | default('/etc/prometheus/rules') }}/{{ item.name }}.yml"
-    owner: prometheus
-    group: prometheus
+    owner: "{{ 'prometheus' if prometheus_installation == 'native' else 'nobody' }}"
+    group: "{{ 'prometheus' if prometheus_installation == 'native' else 'nogroup' }}"
     mode: o=rw,g=r,o=r
   tags:
     - prometheus
@@ -226,8 +226,8 @@
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.path | default('/etc/prometheus/rules') }}/{{ item.name }}.yml"
-    owner: prometheus
-    group: prometheus
+    owner: "{{ 'prometheus' if prometheus_installation == 'native' else 'nobody' }}"
+    group: "{{ 'prometheus' if prometheus_installation == 'native' else 'nogroup' }}"
     mode: o=rw,g=r,o=r
   tags:
     - prometheus
