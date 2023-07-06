@@ -36,6 +36,7 @@ Building and improving this Ansible role have been sponsored by my current and p
   - [prometheus_installation](#prometheus_installation)
   - [prometheus_listen_address](#prometheus_listen_address)
   - [prometheus_network](#prometheus_network)
+  - [prometheus_oauth2_access_logging](#prometheus_oauth2_access_logging)
   - [prometheus_oauth2_allowed_groups](#prometheus_oauth2_allowed_groups)
   - [prometheus_oauth2_client_id](#prometheus_oauth2_client_id)
   - [prometheus_oauth2_client_secret](#prometheus_oauth2_client_secret)
@@ -52,6 +53,7 @@ Building and improving this Ansible role have been sponsored by my current and p
   - [prometheus_oauth2_network](#prometheus_oauth2_network)
   - [prometheus_oauth2_provider](#prometheus_oauth2_provider)
   - [prometheus_oauth2_pull_image](#prometheus_oauth2_pull_image)
+  - [prometheus_oauth2_request_logging](#prometheus_oauth2_request_logging)
   - [prometheus_oauth2_static_groups](#prometheus_oauth2_static_groups)
   - [prometheus_oauth2_static_users](#prometheus_oauth2_static_users)
   - [prometheus_oauth2_upstream](#prometheus_oauth2_upstream)
@@ -361,6 +363,16 @@ Optional docker network to attach on OAuth2 Proxy
 prometheus_network:
 ```
 
+### prometheus_oauth2_access_logging
+
+Enable access logging for OAuth2 proxy
+
+#### Default value
+
+```YAML
+prometheus_oauth2_access_logging: false
+```
+
 ### prometheus_oauth2_allowed_groups
 
 List of groups to allow access
@@ -536,6 +548,16 @@ prometheus_oauth2_provider: keycloak
 
 ```YAML
 prometheus_oauth2_pull_image: true
+```
+
+### prometheus_oauth2_request_logging
+
+Enable request logging for OAuth2 proxy
+
+#### Default value
+
+```YAML
+prometheus_oauth2_request_logging: false
 ```
 
 ### prometheus_oauth2_static_groups

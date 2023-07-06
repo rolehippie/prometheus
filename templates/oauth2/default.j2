@@ -3,6 +3,9 @@ OAUTH2_PROXY_REVERSE_PROXY=true
 OAUTH2_PROXY_UPSTREAMS={{ prometheus_oauth2_upstream }}
 OAUTH2_PROXY_FOOTER=-
 
+OAUTH2_PROXY_REQUEST_LOGGING={{ prometheus_oauth2_request_logging | lower }}
+OAUTH2_PROXY_AUTH_LOGGING={{ prometheus_oauth2_access_logging | lower }}
+
 OAUTH2_PROXY_COOKIE_SECRET={{ prometheus_oauth2_cookie_secret }}
 OAUTH2_PROXY_COOKIE_NAME=prometheus
 OAUTH2_PROXY_COOKIE_SECURE={{ (True if prometheus_domain.startswith('https://') else False) | lower }}

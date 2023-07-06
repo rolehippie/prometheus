@@ -201,6 +201,12 @@ prometheus_oauth2_upstream: "http://{{ prometheus_listen_address if prometheus_i
 # @var prometheus_oauth2_listen_address:description: Listem address for the OAuth2 proxy
 prometheus_oauth2_listen_address: 0.0.0.0:9089
 
+# @var prometheus_oauth2_request_logging:description: Enable request logging for OAuth2 proxy
+prometheus_oauth2_request_logging: False
+
+# @var prometheus_oauth2_access_logging:description: Enable access logging for OAuth2 proxy
+prometheus_oauth2_access_logging: False
+
 # @var prometheus_oauth2_cookie_secret:description: Cookie secret used by OAuth2 proxy
 prometheus_oauth2_cookie_secret:
 
