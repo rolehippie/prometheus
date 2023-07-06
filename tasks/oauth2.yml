@@ -111,6 +111,24 @@
     - prometheus
     - oauth2
 
+- name: Pull docker image
+  when: prometheus_oauth2_pull_image
+  docker_image:
+    name: "{{ prometheus_oauth2_image }}"
+    source: pull
+  tags:
+    - prometheus
+    - oauth2
+
+- name: Create docker network
+  when:
+    - prometheus_oauth2_network | default(False)
+  docker_network:
+    name: '{{ prometheus_oauth2_network }}'
+  tags:
+    - prometheus
+    - oauth2
+
 - name: Start prometheus-oauth2 service
   systemd:
     name: prometheus-oauth2

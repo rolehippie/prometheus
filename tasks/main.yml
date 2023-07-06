@@ -269,6 +269,25 @@
   tags:
     - prometheus
 
+- name: Pull docker image
+  when:
+    - prometheus_installation == 'docker'
+    - prometheus_pull_image
+  docker_image:
+    name: "{{ prometheus_image }}"
+    source: pull
+  tags:
+    - prometheus
+
+- name: Create docker network
+  when:
+    - prometheus_installation == 'docker'
+    - prometheus_network | default(False)
+  docker_network:
+    name: '{{ prometheus_network }}'
+  tags:
+    - prometheus
+
 - name: Start prometheus service
   systemd:
     name: prometheus

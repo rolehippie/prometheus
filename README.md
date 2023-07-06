@@ -51,10 +51,12 @@ Building and improving this Ansible role have been sponsored by my current and p
   - [prometheus_oauth2_listen_address](#prometheus_oauth2_listen_address)
   - [prometheus_oauth2_network](#prometheus_oauth2_network)
   - [prometheus_oauth2_provider](#prometheus_oauth2_provider)
+  - [prometheus_oauth2_pull_image](#prometheus_oauth2_pull_image)
   - [prometheus_oauth2_static_groups](#prometheus_oauth2_static_groups)
   - [prometheus_oauth2_static_users](#prometheus_oauth2_static_users)
   - [prometheus_oauth2_upstream](#prometheus_oauth2_upstream)
   - [prometheus_oauth2_version](#prometheus_oauth2_version)
+  - [prometheus_pull_image](#prometheus_pull_image)
   - [prometheus_rule_files](#prometheus_rule_files)
   - [prometheus_scrape_configs](#prometheus_scrape_configs)
   - [prometheus_scrape_interval](#prometheus_scrape_interval)
@@ -528,6 +530,14 @@ Provider for OAuth2 authentication
 prometheus_oauth2_provider: keycloak
 ```
 
+### prometheus_oauth2_pull_image
+
+#### Default value
+
+```YAML
+prometheus_oauth2_pull_image: true
+```
+
 ### prometheus_oauth2_static_groups
 
 List of groups assigned to static users
@@ -579,6 +589,16 @@ Version of the OAuth2 Proxy to download
 
 ```YAML
 prometheus_oauth2_version: 7.4.0
+```
+
+### prometheus_pull_image
+
+Pull image as part of the tasks
+
+#### Default value
+
+```YAML
+prometheus_pull_image: true
 ```
 
 ### prometheus_rule_files

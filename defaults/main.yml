@@ -13,6 +13,9 @@ prometheus_download: "https://github.com/prometheus/prometheus/releases/download
 # @var prometheus_image:description: Docker image to use for deployment
 prometheus_image: "quay.io/prometheus/prometheus:v{{ prometheus_version }}"
 
+# @var prometheus_pull_image:description: Pull image as part of the tasks
+prometheus_pull_image: True
+
 # @var prometheus_network:description: Optional docker network to attach
 prometheus_network:
 
@@ -165,6 +168,9 @@ prometheus_oauth2_download: "https://github.com/oauth2-proxy/oauth2-proxy/releas
 
 # @var prometheus_image:description: Docker image to use for deployment on OAuth2 Proxy
 prometheus_oauth2_image: "quay.io/oauth2-proxy/oauth2-proxy:v{{ prometheus_oauth2_version }}"
+
+# @var prometheus_pull_image:description: Pull image as part of the tasks
+prometheus_oauth2_pull_image: True
 
 # @var prometheus_network:description: Optional docker network to attach on OAuth2 Proxy
 prometheus_oauth2_network: "{{ prometheus_network }}"
