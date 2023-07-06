@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.5.0](https://github.com/rolehippie/prometheus/compare/v1.4.1...v1.5.0) (2023-07-06)
+
+
+### Features
+
+* add options to disable access and auth logging for oauth2 proxy ([4330c25](https://github.com/rolehippie/prometheus/commit/4330c253dfdb572faff28189716a7faaa1fe4304))
+* move image pull to tasks from service and create network ([4f85436](https://github.com/rolehippie/prometheus/commit/4f85436fc1912fbaf2ebf2115ecdf8c7c07f9840))
+
 ## [1.4.1](https://github.com/rolehippie/prometheus/compare/v1.4.0...v1.4.1) (2023-07-05)
 
 
