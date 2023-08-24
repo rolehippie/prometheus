@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.0](https://github.com/rolehippie/prometheus/compare/v1.6.0...v1.7.0) (2023-08-24)
+
+
+### Features
+
+* add optional defaults for cpu and memory limit ([4e92a98](https://github.com/rolehippie/prometheus/commit/4e92a9865c07539ffcd8434a88d9a67653a5268c))
+
 ## [1.6.0](https://github.com/rolehippie/prometheus/compare/v1.5.0...v1.6.0) (2023-07-31)
 
 
