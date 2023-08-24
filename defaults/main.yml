@@ -68,6 +68,26 @@ prometheus_default_volumes:
 # @end
 prometheus_extra_volumes: []
 
+# @var prometheus_memory_limit:description: Memory limit with Docker deployment
+# @var prometheus_memory_limit:example: $ "1024m"
+prometheus_memory_limit:
+
+# @var prometheus_memory_swap:description: Swap usage with Docker deployment
+# @var prometheus_memory_swap:example: $ "2048m"
+prometheus_memory_swap:
+
+# @var prometheus_memory_soft_limit:description: Soft memory limit with Docker deployment
+# @var prometheus_memory_soft_limit:example: $ "512m"
+prometheus_memory_soft_limit:
+
+# @var prometheus_cpu_shares:description: CPU shares with Docker deployment
+# @var prometheus_cpu_shares:example: $ "512"
+prometheus_cpu_shares:
+
+# @var prometheus_number_of_cpus:description: Number of CPUs with Docker deployment
+# @var prometheus_number_of_cpus:example: $ "1.0"
+prometheus_number_of_cpus:
+
 # @var prometheus_domain:description: Domain for external access
 # @var prometheus_domain:example: $ "https://prometheus.example.com"
 prometheus_domain:
@@ -194,6 +214,26 @@ prometheus_oauth2_default_labels: []
 
 # @var prometheus_oauth2_extra_labels:description: List of extra labels to assign to docker on OAuth2 Proxy
 prometheus_oauth2_extra_labels: []
+
+# @var prometheus_oauth2_memory_limit:description: Memory limit with Docker deployment
+# @var prometheus_oauth2_memory_limit:example: $ "1024m"
+prometheus_oauth2_memory_limit:
+
+# @var prometheus_oauth2_memory_swap:description: Swap usage with Docker deployment
+# @var prometheus_oauth2_memory_swap:example: $ "2048m"
+prometheus_oauth2_memory_swap:
+
+# @var prometheus_oauth2_memory_soft_limit:description: Soft memory limit with Docker deployment
+# @var prometheus_oauth2_memory_soft_limit:example: $ "512m"
+prometheus_oauth2_memory_soft_limit:
+
+# @var prometheus_oauth2_cpu_shares:description: CPU shares with Docker deployment
+# @var prometheus_oauth2_cpu_shares:example: $ "512"
+prometheus_oauth2_cpu_shares:
+
+# @var prometheus_oauth2_number_of_cpus:description: Number of CPUs with Docker deployment
+# @var prometheus_oauth2_number_of_cpus:example: $ "1.5"
+prometheus_oauth2_number_of_cpus:
 
 # @var prometheus_oauth2_upstream:description: Upstream target for the OAuth2 proxy
 prometheus_oauth2_upstream: "http://{{ prometheus_listen_address if prometheus_installation == 'native' else 'prometheus:9090' }}"

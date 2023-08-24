@@ -2,7 +2,7 @@
 
 [![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&amp;logoColor=white)](https://github.com/rolehippie/prometheus)
 [![General Workflow](https://github.com/rolehippie/prometheus/actions/workflows/general.yml/badge.svg)](https://github.com/rolehippie/prometheus/actions/workflows/general.yml)
-[![Readme Workflow](https://github.com/rolehippie/prometheus/actions/workflows/readme.yml/badge.svg)](https://github.com/rolehippie/prometheus/actions/workflows/readme.yml)
+[![Readme Workflow](https://github.com/rolehippie/prometheus/actions/workflows/docs.yml/badge.svg)](https://github.com/rolehippie/prometheus/actions/workflows/docs.yml)
 [![Galaxy Workflow](https://github.com/rolehippie/prometheus/actions/workflows/galaxy.yml/badge.svg)](https://github.com/rolehippie/prometheus/actions/workflows/galaxy.yml)
 [![License: Apache-2.0](https://img.shields.io/github/license/rolehippie/prometheus)](https://github.com/rolehippie/prometheus/blob/master/LICENSE)
 [![Ansible Role](https://img.shields.io/badge/role-rolehippie.prometheus-blue)](https://galaxy.ansible.com/rolehippie/prometheus)
@@ -18,6 +18,7 @@ Building and improving this Ansible role have been sponsored by my current and p
 - [Requirements](#requirements)
 - [Default Variables](#default-variables)
   - [prometheus_alertmanagers](#prometheus_alertmanagers)
+  - [prometheus_cpu_shares](#prometheus_cpu_shares)
   - [prometheus_default_folders](#prometheus_default_folders)
   - [prometheus_default_labels](#prometheus_default_labels)
   - [prometheus_default_publish](#prometheus_default_publish)
@@ -35,12 +36,17 @@ Building and improving this Ansible role have been sponsored by my current and p
   - [prometheus_image](#prometheus_image)
   - [prometheus_installation](#prometheus_installation)
   - [prometheus_listen_address](#prometheus_listen_address)
+  - [prometheus_memory_limit](#prometheus_memory_limit)
+  - [prometheus_memory_soft_limit](#prometheus_memory_soft_limit)
+  - [prometheus_memory_swap](#prometheus_memory_swap)
   - [prometheus_network](#prometheus_network)
+  - [prometheus_number_of_cpus](#prometheus_number_of_cpus)
   - [prometheus_oauth2_access_logging](#prometheus_oauth2_access_logging)
   - [prometheus_oauth2_allowed_groups](#prometheus_oauth2_allowed_groups)
   - [prometheus_oauth2_client_id](#prometheus_oauth2_client_id)
   - [prometheus_oauth2_client_secret](#prometheus_oauth2_client_secret)
   - [prometheus_oauth2_cookie_secret](#prometheus_oauth2_cookie_secret)
+  - [prometheus_oauth2_cpu_shares](#prometheus_oauth2_cpu_shares)
   - [prometheus_oauth2_default_labels](#prometheus_oauth2_default_labels)
   - [prometheus_oauth2_default_publish](#prometheus_oauth2_default_publish)
   - [prometheus_oauth2_download](#prometheus_oauth2_download)
@@ -50,7 +56,11 @@ Building and improving this Ansible role have been sponsored by my current and p
   - [prometheus_oauth2_image](#prometheus_oauth2_image)
   - [prometheus_oauth2_keycloak_url](#prometheus_oauth2_keycloak_url)
   - [prometheus_oauth2_listen_address](#prometheus_oauth2_listen_address)
+  - [prometheus_oauth2_memory_limit](#prometheus_oauth2_memory_limit)
+  - [prometheus_oauth2_memory_soft_limit](#prometheus_oauth2_memory_soft_limit)
+  - [prometheus_oauth2_memory_swap](#prometheus_oauth2_memory_swap)
   - [prometheus_oauth2_network](#prometheus_oauth2_network)
+  - [prometheus_oauth2_number_of_cpus](#prometheus_oauth2_number_of_cpus)
   - [prometheus_oauth2_provider](#prometheus_oauth2_provider)
   - [prometheus_oauth2_pull_image](#prometheus_oauth2_pull_image)
   - [prometheus_oauth2_request_logging](#prometheus_oauth2_request_logging)
@@ -97,6 +107,22 @@ prometheus_alertmanagers:
     static_configs:
       - targets:
           - loclhost:9093
+```
+
+### prometheus_cpu_shares
+
+CPU shares with Docker deployment
+
+#### Default value
+
+```YAML
+prometheus_cpu_shares:
+```
+
+#### Example usage
+
+```YAML
+prometheus_cpu_shares: '512'
 ```
 
 ### prometheus_default_folders
@@ -353,6 +379,54 @@ Listen address for the prometheus
 prometheus_listen_address: 0.0.0.0:9090
 ```
 
+### prometheus_memory_limit
+
+Memory limit with Docker deployment
+
+#### Default value
+
+```YAML
+prometheus_memory_limit:
+```
+
+#### Example usage
+
+```YAML
+prometheus_memory_limit: 1024m
+```
+
+### prometheus_memory_soft_limit
+
+Soft memory limit with Docker deployment
+
+#### Default value
+
+```YAML
+prometheus_memory_soft_limit:
+```
+
+#### Example usage
+
+```YAML
+prometheus_memory_soft_limit: 512m
+```
+
+### prometheus_memory_swap
+
+Swap usage with Docker deployment
+
+#### Default value
+
+```YAML
+prometheus_memory_swap:
+```
+
+#### Example usage
+
+```YAML
+prometheus_memory_swap: 2048m
+```
+
 ### prometheus_network
 
 Optional docker network to attach on OAuth2 Proxy
@@ -361,6 +435,22 @@ Optional docker network to attach on OAuth2 Proxy
 
 ```YAML
 prometheus_network:
+```
+
+### prometheus_number_of_cpus
+
+Number of CPUs with Docker deployment
+
+#### Default value
+
+```YAML
+prometheus_number_of_cpus:
+```
+
+#### Example usage
+
+```YAML
+prometheus_number_of_cpus: '1.0'
 ```
 
 ### prometheus_oauth2_access_logging
@@ -420,6 +510,22 @@ Cookie secret used by OAuth2 proxy
 
 ```YAML
 prometheus_oauth2_cookie_secret:
+```
+
+### prometheus_oauth2_cpu_shares
+
+CPU shares with Docker deployment
+
+#### Default value
+
+```YAML
+prometheus_oauth2_cpu_shares:
+```
+
+#### Example usage
+
+```YAML
+prometheus_oauth2_cpu_shares: '512'
 ```
 
 ### prometheus_oauth2_default_labels
@@ -524,12 +630,76 @@ Listem address for the OAuth2 proxy
 prometheus_oauth2_listen_address: 0.0.0.0:9089
 ```
 
+### prometheus_oauth2_memory_limit
+
+Memory limit with Docker deployment
+
+#### Default value
+
+```YAML
+prometheus_oauth2_memory_limit:
+```
+
+#### Example usage
+
+```YAML
+prometheus_oauth2_memory_limit: 1024m
+```
+
+### prometheus_oauth2_memory_soft_limit
+
+Soft memory limit with Docker deployment
+
+#### Default value
+
+```YAML
+prometheus_oauth2_memory_soft_limit:
+```
+
+#### Example usage
+
+```YAML
+prometheus_oauth2_memory_soft_limit: 512m
+```
+
+### prometheus_oauth2_memory_swap
+
+Swap usage with Docker deployment
+
+#### Default value
+
+```YAML
+prometheus_oauth2_memory_swap:
+```
+
+#### Example usage
+
+```YAML
+prometheus_oauth2_memory_swap: 2048m
+```
+
 ### prometheus_oauth2_network
 
 #### Default value
 
 ```YAML
 prometheus_oauth2_network: '{{ prometheus_network }}'
+```
+
+### prometheus_oauth2_number_of_cpus
+
+Number of CPUs with Docker deployment
+
+#### Default value
+
+```YAML
+prometheus_oauth2_number_of_cpus:
+```
+
+#### Example usage
+
+```YAML
+prometheus_oauth2_number_of_cpus: '1.5'
 ```
 
 ### prometheus_oauth2_provider
