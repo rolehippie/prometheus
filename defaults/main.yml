@@ -181,7 +181,7 @@ prometheus_oauth2_enabled: False
 
 # @var prometheus_oauth2_version:description: Version of the OAuth2 Proxy to download
 # renovate: datasource=github-releases depName=oauth2-proxy/oauth2-proxy
-prometheus_oauth2_version: 7.4.0
+prometheus_oauth2_version: 7.5.0
 
 # @var prometheus_oauth2_enabled:description: URL of the OAuth2 Proxy to download
 prometheus_oauth2_download: "https://github.com/oauth2-proxy/oauth2-proxy/releases/download/v{{ prometheus_oauth2_version }}/oauth2-proxy-v{{ prometheus_oauth2_version }}.linux-amd64.tar.gz"
