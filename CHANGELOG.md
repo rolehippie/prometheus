@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.1](https://github.com/rolehippie/prometheus/compare/v1.8.0...v1.8.1) (2023-09-25)
+
+
+### Bugfixes
+
+* **deps:** update dependency oauth2-proxy/oauth2-proxy to v7.5.1 ([0f7d548](https://github.com/rolehippie/prometheus/commit/0f7d548e04ef90c462524891e4e0668511e22ad6))
+
 ## [1.8.0](https://github.com/rolehippie/prometheus/compare/v1.7.0...v1.8.0) (2023-09-11)
 
 
