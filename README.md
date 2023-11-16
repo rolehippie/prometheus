@@ -862,7 +862,7 @@ Version of the release to install
 #### Default value
 
 ```YAML
-prometheus_version: 2.47.2
+prometheus_version: 2.48.0
 ```
 
 ## Discovered Tags
