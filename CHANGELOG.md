@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.1](https://github.com/rolehippie/prometheus/compare/v1.9.0...v1.9.1) (2023-12-11)
+
+
+### Bugfixes
+
+* **deps:** update dependency prometheus/prometheus to v2.48.1 ([cafdb54](https://github.com/rolehippie/prometheus/commit/cafdb54cf5170d10919ca526ccdc6286654b87d0))
+
 ## [1.9.0](https://github.com/rolehippie/prometheus/compare/v1.8.3...v1.9.0) (2023-11-20)
 
 
