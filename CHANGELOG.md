@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.10.0](https://github.com/rolehippie/prometheus/compare/v1.9.1...v1.10.0) (2024-01-22)
+
+
+### Features
+
+* **deps:** update dependency prometheus/prometheus to v2.49.0 ([c2091fc](https://github.com/rolehippie/prometheus/commit/c2091fc43d464583aa85634414214e70ef6f8a04))
+
+
+### Bugfixes
+
+* **deps:** update dependency prometheus/prometheus to v2.49.1 ([d53423d](https://github.com/rolehippie/prometheus/commit/d53423d24ec62839d639e3427a507327d906f396))
+
 ## [1.9.1](https://github.com/rolehippie/prometheus/compare/v1.9.0...v1.9.1) (2023-12-11)
 
 
