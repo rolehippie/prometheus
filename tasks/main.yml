@@ -27,7 +27,7 @@
     name: prometheus
     group: prometheus
     password: "!"
-    ansible.builtin.shell: /usr/sbin/nologin
+    shell: /usr/sbin/nologin
     home: /var/lib/prometheus
     create_home: False
     system: True
