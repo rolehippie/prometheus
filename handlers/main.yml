@@ -1,12 +1,12 @@
 ---
 - name: Restart prometheus
-  systemd:
+  ansible.builtin.systemd:
     name: prometheus
     state: restarted
     daemon_reload: True
 
 - name: Restart prometheus-oauth2
-  systemd:
+  ansible.builtin.systemd:
     name: prometheus-oauth2
     state: restarted
     daemon_reload: yes
