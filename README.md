@@ -875,6 +875,9 @@ prometheus_version: 2.49.1
 ## Dependencies
 
 - [rolehippie.docker](https://github.com/rolehippie/docker)
+- [ansible.posix](https://github.com/ansible-collections/ansible.posix)
+- [community.docker](https://github.com/ansible-collections/community.docker)
+- [community.general](https://github.com/ansible-collections/community.general)
 
 ## License
 
