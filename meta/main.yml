@@ -16,6 +16,9 @@
 # @end
 # @meta dependencies:value: >
 # [rolehippie.docker](https://github.com/rolehippie/docker)
+# [ansible.posix](https://github.com/ansible-collections/ansible.posix)
+# [community.docker](https://github.com/ansible-collections/community.docker)
+# [community.general](https://github.com/ansible-collections/community.general)
 # @end
 galaxy_info:
   role_name: prometheus
