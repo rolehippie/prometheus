@@ -1,5 +1,19 @@
 # Changelog
 
+## [2.0.0](https://github.com/rolehippie/prometheus/compare/v1.10.0...v2.0.0) (2024-02-12)
+
+
+### Features
+
+* drop support for ubuntu 18.04 ([fdf1572](https://github.com/rolehippie/prometheus/commit/fdf1572bde233a253af2822b7a83a814bc83440c))
+* used full qualified collection names ([cff737e](https://github.com/rolehippie/prometheus/commit/cff737e13193a7ce4f79bc624a34016c9be3307d))
+
+
+### Bugfixes
+
+* remove meta requirements and document used collections ([fa488b4](https://github.com/rolehippie/prometheus/commit/fa488b430dc3c4a6e7805c6e3520ab47db6c1318))
+* use right attribute for user shell ([1df21d9](https://github.com/rolehippie/prometheus/commit/1df21d9ae72770ac3458c4d4736407b244ae1253))
+
 ## [1.10.0](https://github.com/rolehippie/prometheus/compare/v1.9.1...v1.10.0) (2024-01-22)
 
 
