@@ -779,7 +779,7 @@ Version of the OAuth2 Proxy to download
 #### Default value
 
 ```YAML
-prometheus_oauth2_version: 7.5.1
+prometheus_oauth2_version: 7.6.0
 ```
 
 ### prometheus_pull_image
@@ -862,7 +862,7 @@ Version of the release to install
 #### Default value
 
 ```YAML
-prometheus_version: 2.49.1
+prometheus_version: 2.51.0
 ```
 
 ## Discovered Tags
