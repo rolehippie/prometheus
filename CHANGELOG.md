@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/rolehippie/prometheus/compare/v2.0.0...v2.1.0) (2024-03-25)
+
+
+### Features
+
+* **deps:** update minor versions ([351c387](https://github.com/rolehippie/prometheus/commit/351c3876a369e6636b4c4508932e39b4c89a8bc1))
+
 ## [2.0.0](https://github.com/rolehippie/prometheus/compare/v1.10.0...v2.0.0) (2024-02-12)
 
 
