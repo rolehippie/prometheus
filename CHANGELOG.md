@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.2](https://github.com/rolehippie/prometheus/compare/v2.1.1...v2.1.2) (2024-04-22)
+
+
+### Bugfixes
+
+* **deps:** update dependency prometheus/prometheus to v2.51.2 ([e060e0d](https://github.com/rolehippie/prometheus/commit/e060e0db53c167aeabcbc542c278f0ecafc1eebe))
+
 ## [2.1.1](https://github.com/rolehippie/prometheus/compare/v2.1.0...v2.1.1) (2024-04-01)
 
 
