@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.5.0](https://github.com/rolehippie/prometheus/compare/v2.4.1...v2.5.0) (2024-10-07)
+
+
+### Features
+
+* **deps:** update dependency oauth2-proxy/oauth2-proxy to v7.7.0 ([5ff42ab](https://github.com/rolehippie/prometheus/commit/5ff42ab8cf3507a951b73c18acd4efe37f79d0bb))
+
 ## [2.4.1](https://github.com/rolehippie/prometheus/compare/v2.4.0...v2.4.1) (2024-09-02)
 
 
