@@ -82,6 +82,7 @@
 
 - name: Sync libraries folder
   when:
+    - prometheus_version is version('3.0.0', '<')
     - prometheus_installation == 'native'
     - prometheus_version_changed
     - not ansible_check_mode
@@ -98,6 +99,7 @@
 
 - name: Fix libraries owner
   when:
+    - prometheus_version is version('3.0.0', '<')
     - prometheus_installation == 'native'
     - prometheus_version_changed
     - not ansible_check_mode
@@ -111,8 +113,19 @@
   tags:
     - prometheus
 
+- name: Drop libraries folder
+  when:
+    - prometheus_version is version('3.0.0', '>=')
+    - prometheus_installation == 'native'
+  ansible.builtin.file:
+    path: /etc/prometheus/console_libraries
+    state: absent
+  tags:
+    - prometheus
+
 - name: Sync consoles folder
   when:
+    - prometheus_version is version('3.0.0', '<')
     - prometheus_installation == 'native'
     - prometheus_version_changed
     - not ansible_check_mode
@@ -129,6 +142,7 @@
 
 - name: Fix consoles owner
   when:
+    - prometheus_version is version('3.0.0', '<')
     - prometheus_installation == 'native'
     - prometheus_version_changed
     - not ansible_check_mode
@@ -139,6 +153,16 @@
     owner: prometheus
     group: prometheus
     recurse: True
+  tags:
+    - prometheus
+
+- name: Drop consoles folder
+  when:
+    - prometheus_version is version('3.0.0', '>=')
+    - prometheus_installation == 'native'
+  ansible.builtin.file:
+    path: /etc/prometheus/consoles
+    state: absent
   tags:
     - prometheus
 
