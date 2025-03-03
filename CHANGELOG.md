@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.3.1](https://github.com/rolehippie/prometheus/compare/v3.3.0...v3.3.1) (2025-03-03)
+
+
+### Bugfixes
+
+* **deps:** update dependency prometheus/prometheus to v3.2.1 ([#74](https://github.com/rolehippie/prometheus/issues/74)) ([fe043b4](https://github.com/rolehippie/prometheus/commit/fe043b49cf54906e4ad2f0d5701daa10e999ebab))
+
 ## [3.3.0](https://github.com/rolehippie/prometheus/compare/v3.2.0...v3.3.0) (2025-02-24)
 
 
