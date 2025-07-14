@@ -1,4 +1,4 @@
-# prometheus
+# workspace
 
 [![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&logoColor=white)](https://github.com/rolehippie/prometheus)
 [![General Workflow](https://github.com/rolehippie/prometheus/actions/workflows/general.yml/badge.svg)](https://github.com/rolehippie/prometheus/actions/workflows/general.yml)
@@ -229,7 +229,8 @@ URL to the archive of the release to install
 #### Default value
 
 ```YAML
-prometheus_download: https://github.com/prometheus/prometheus/releases/download/v{{
+prometheus_download: 
+  https://github.com/prometheus/prometheus/releases/download/v{{ 
   prometheus_version }}/prometheus-{{ prometheus_version }}.linux-amd64.tar.gz
 ```
 
@@ -559,8 +560,10 @@ prometheus_oauth2_default_publish:
 #### Default value
 
 ```YAML
-prometheus_oauth2_download: https://github.com/oauth2-proxy/oauth2-proxy/releases/download/v{{
-  prometheus_oauth2_version }}/oauth2-proxy-v{{ prometheus_oauth2_version }}.linux-amd64.tar.gz
+prometheus_oauth2_download: 
+  https://github.com/oauth2-proxy/oauth2-proxy/releases/download/v{{ 
+  prometheus_oauth2_version }}/oauth2-proxy-v{{ prometheus_oauth2_version 
+  }}.linux-amd64.tar.gz
 ```
 
 ### prometheus_oauth2_enabled
@@ -605,8 +608,8 @@ prometheus_oauth2_extra_publish:
 #### Default value
 
 ```YAML
-prometheus_oauth2_image: quay.io/oauth2-proxy/oauth2-proxy:v{{ prometheus_oauth2_version
-  }}
+prometheus_oauth2_image: quay.io/oauth2-proxy/oauth2-proxy:v{{ 
+  prometheus_oauth2_version }}
 ```
 
 ### prometheus_oauth2_keycloak_url
@@ -768,8 +771,8 @@ Upstream target for the OAuth2 proxy
 #### Default value
 
 ```YAML
-prometheus_oauth2_upstream: http://{{ prometheus_listen_address if prometheus_installation
-  == 'native' else 'prometheus:9090' }}
+prometheus_oauth2_upstream: http://{{ prometheus_listen_address if 
+  prometheus_installation == 'native' else 'prometheus:9090' }}
 ```
 
 ### prometheus_oauth2_version
@@ -862,7 +865,7 @@ Version of the release to install
 #### Default value
 
 ```YAML
-prometheus_version: 3.4.2
+prometheus_version: 3.5.0
 ```
 
 ## Discovered Tags
@@ -870,7 +873,6 @@ prometheus_version: 3.4.2
 **_oauth2_**
 
 **_prometheus_**
-
 
 ## Dependencies
 
