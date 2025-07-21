@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.7.0](https://github.com/rolehippie/prometheus/compare/v3.6.2...v3.7.0) (2025-07-21)
+
+
+### Features
+
+* **deps:** update dependency oauth2-proxy/oauth2-proxy to v7.10.0 ([#84](https://github.com/rolehippie/prometheus/issues/84)) ([d5308f8](https://github.com/rolehippie/prometheus/commit/d5308f883261f99a902ede178f6a1d12873f0e86))
+* **deps:** update dependency prometheus/prometheus to v3.5.0 ([#83](https://github.com/rolehippie/prometheus/issues/83)) ([23ef983](https://github.com/rolehippie/prometheus/commit/23ef9831122bc5f4bb1c9f66239808df4a5a2aff))
+
 ## [3.6.2](https://github.com/rolehippie/prometheus/compare/v3.6.1...v3.6.2) (2025-06-30)
 
 
