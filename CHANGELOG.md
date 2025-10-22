@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.11.0](https://github.com/rolehippie/prometheus/compare/v3.10.0...v3.11.0) (2025-10-22)
+
+
+### Features
+
+* apply new repo structure and update linting ([432f204](https://github.com/rolehippie/prometheus/commit/432f204210cfc589c98e52a4249d15e79f93c629))
+* **minor:** update dependency prometheus/prometheus to v3.7.2 ([#95](https://github.com/rolehippie/prometheus/issues/95)) ([8c1739b](https://github.com/rolehippie/prometheus/commit/8c1739b8f53ef125dd0b76d7486a58b73ed647ab))
+
 ## [3.10.0](https://github.com/rolehippie/prometheus/compare/v3.9.0...v3.10.0) (2025-09-29)
 
 
