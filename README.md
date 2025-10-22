@@ -1,4 +1,4 @@
-# workspace
+# prometheus
 
 [![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&logoColor=white)](https://github.com/rolehippie/prometheus)
 [![General Workflow](https://github.com/rolehippie/prometheus/actions/workflows/general.yml/badge.svg)](https://github.com/rolehippie/prometheus/actions/workflows/general.yml)
@@ -18,6 +18,7 @@ Building and improving this Ansible role have been sponsored by my current and p
 - [Requirements](#requirements)
 - [Default Variables](#default-variables)
   - [prometheus_alertmanagers](#prometheus_alertmanagers)
+  - [prometheus_arch](#prometheus_arch)
   - [prometheus_cpu_shares](#prometheus_cpu_shares)
   - [prometheus_default_folders](#prometheus_default_folders)
   - [prometheus_default_labels](#prometheus_default_labels)
@@ -43,6 +44,7 @@ Building and improving this Ansible role have been sponsored by my current and p
   - [prometheus_number_of_cpus](#prometheus_number_of_cpus)
   - [prometheus_oauth2_access_logging](#prometheus_oauth2_access_logging)
   - [prometheus_oauth2_allowed_groups](#prometheus_oauth2_allowed_groups)
+  - [prometheus_oauth2_arch](#prometheus_oauth2_arch)
   - [prometheus_oauth2_client_id](#prometheus_oauth2_client_id)
   - [prometheus_oauth2_client_secret](#prometheus_oauth2_client_secret)
   - [prometheus_oauth2_cookie_secret](#prometheus_oauth2_cookie_secret)
@@ -106,6 +108,17 @@ prometheus_alertmanagers:
     static_configs:
       - targets:
           - loclhost:9093
+```
+
+### prometheus_arch
+
+Target system architecture of the binary
+
+#### Default value
+
+```YAML
+prometheus_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' or ansible_architecture
+  == 'arm64' else 'amd64' }}"
 ```
 
 ### prometheus_cpu_shares
@@ -231,7 +244,8 @@ URL to the archive of the release to install
 ```YAML
 prometheus_download: 
   https://github.com/prometheus/prometheus/releases/download/v{{ 
-  prometheus_version }}/prometheus-{{ prometheus_version }}.linux-amd64.tar.gz
+  prometheus_version }}/prometheus-{{ prometheus_version }}.linux-{{ 
+  prometheus_arch }}.tar.gz
 ```
 
 ### prometheus_enable_remote_write_receiver
@@ -482,6 +496,16 @@ prometheus_oauth2_allowed_groups:
   - /Group3
 ```
 
+### prometheus_oauth2_arch
+
+Target system architecture of the binary
+
+#### Default value
+
+```YAML
+prometheus_oauth2_arch: '{{ prometheus_arch }}'
+```
+
 ### prometheus_oauth2_client_id
 
 Client ID for OAuth2 authentication
@@ -563,7 +587,7 @@ prometheus_oauth2_default_publish:
 prometheus_oauth2_download: 
   https://github.com/oauth2-proxy/oauth2-proxy/releases/download/v{{ 
   prometheus_oauth2_version }}/oauth2-proxy-v{{ prometheus_oauth2_version 
-  }}.linux-amd64.tar.gz
+  }}.linux-{{ prometheus_oauth2_arch }}.tar.gz
 ```
 
 ### prometheus_oauth2_enabled

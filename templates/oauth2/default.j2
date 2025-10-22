@@ -8,7 +8,7 @@ OAUTH2_PROXY_AUTH_LOGGING={{ prometheus_oauth2_access_logging | lower }}
 
 OAUTH2_PROXY_COOKIE_SECRET={{ prometheus_oauth2_cookie_secret }}
 OAUTH2_PROXY_COOKIE_NAME=prometheus
-OAUTH2_PROXY_COOKIE_SECURE={{ (True if prometheus_domain.startswith('https://') else False) | lower }}
+OAUTH2_PROXY_COOKIE_SECURE={{ (true if prometheus_domain.startswith('https://') else false) | lower }}
 OAUTH2_PROXY_COOKIE_EXPIRE=24h0m0s
 
 OAUTH2_PROXY_CLIENT_ID={{ prometheus_oauth2_client_id }}
@@ -22,11 +22,11 @@ OAUTH2_PROXY_PROVIDER_DISPLAY_NAME=Keycloak
 OAUTH2_PROXY_REDIRECT_URL={{ prometheus_domain }}/oauth2/callback
 OAUTH2_PROXY_OIDC_ISSUER_URL={{ prometheus_oauth2_keycloak_url }}
 {% endif %}
-{% if prometheus_oauth2_allowed_groups | default(False) %}
+{% if prometheus_oauth2_allowed_groups | default(false) %}
 
 OAUTH2_PROXY_ALLOWED_GROUPS={{ prometheus_oauth2_allowed_groups | join(',') }}
 {% endif %}
-{% if prometheus_oauth2_static_users | default(False) %}
+{% if prometheus_oauth2_static_users | default(false) %}
 
 OAUTH2_PROXY_DISPLAY_HTPASSWD_FORM=false
 OAUTH2_PROXY_HTPASSWD_FILE=/etc/prometheus/htpasswd

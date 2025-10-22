@@ -1,6 +1,7 @@
 ---
 - name: Install required packages
-  when: prometheus_oauth2_static_users | default(False)
+  when:
+    - prometheus_oauth2_static_users | length > 0
   loop:
     - python3-passlib
     - python3-bcrypt
@@ -15,9 +16,9 @@
   when:
     - prometheus_installation == 'native'
   register: prometheus_oauth2_version_check
-  failed_when: False
-  changed_when: False
-  check_mode: False
+  failed_when: false
+  changed_when: false
+  check_mode: false
   ansible.builtin.shell: /usr/bin/prometheus-oauth2 --version 2>&1
   tags:
     - prometheus
@@ -39,7 +40,7 @@
   ansible.builtin.unarchive:
     src: "{{ prometheus_oauth2_download }}"
     dest: /usr/local/src
-    remote_src: True
+    remote_src: true
     owner: root
     group: root
   tags:
@@ -54,9 +55,9 @@
   notify:
     - Restart prometheus-oauth2
   ansible.builtin.copy:
-    src: "/usr/local/src/oauth2-proxy-v{{ prometheus_oauth2_version }}.linux-amd64/oauth2-proxy"
+    src: "/usr/local/src/oauth2-proxy-v{{ prometheus_oauth2_version }}.linux-{{ prometheus_oauth2_arch }}/oauth2-proxy"
     dest: /usr/bin/prometheus-oauth2
-    remote_src: True
+    remote_src: true
     owner: root
     group: root
     mode: u=rwx,g=rx,o=rx
@@ -65,7 +66,8 @@
     - oauth2
 
 - name: Write users config
-  when: prometheus_oauth2_static_users | default(False)
+  when:
+    - prometheus_oauth2_static_users | length > 0
   loop: "{{ prometheus_oauth2_static_users }}"
   loop_control:
     label: "{{ item.username }}"
@@ -111,7 +113,9 @@
     - oauth2
 
 - name: Pull docker image
-  when: prometheus_oauth2_pull_image
+  when:
+    - prometheus_installation == 'docker'
+    - prometheus_oauth2_pull_image
   community.docker.docker_image:
     name: "{{ prometheus_oauth2_image }}"
     source: pull
@@ -121,7 +125,8 @@
 
 - name: Create docker network
   when:
-    - prometheus_oauth2_network | default(False)
+    - prometheus_installation == 'docker'
+    - false if prometheus_oauth2_network is none else (prometheus_oauth2_network | length > 0)
   community.docker.docker_network:
     name: '{{ prometheus_oauth2_network }}'
   tags:
@@ -132,9 +137,9 @@
   ansible.builtin.systemd:
     name: prometheus-oauth2
     state: started
-    daemon_reload: True
-    masked: False
-    enabled: True
+    daemon_reload: true
+    masked: false
+    enabled: true
   tags:
     - prometheus
     - oauth2
@@ -143,7 +148,7 @@
   when:
     - prometheus_installation == 'native'
   ansible.builtin.file:
-    path: "/usr/local/src/oauth2-proxy-v{{ prometheus_oauth2_version }}.linux-amd64"
+    path: "/usr/local/src/oauth2-proxy-v{{ prometheus_oauth2_version }}.linux-{{ prometheus_oauth2_arch }}"
     state: absent
   tags:
     - prometheus

@@ -10,7 +10,7 @@ driver:
   name: containers
 
 platforms:
-  - name: prometheus-ubuntu-24
+  - name: prometheus-docker-24
     image: docker.io/geerlingguy/docker-ubuntu2404-ansible:latest
     hostname: ubuntu
     privileged: true
@@ -22,7 +22,7 @@ platforms:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
     environment:
       container: docker
-  - name: prometheus-ubuntu-22
+  - name: prometheus-docker-22
     image: docker.io/geerlingguy/docker-ubuntu2204-ansible:latest
     hostname: ubuntu
     privileged: true
@@ -34,7 +34,7 @@ platforms:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
     environment:
       container: docker
-  - name: prometheus-ubuntu-20
+  - name: prometheus-docker-20
     image: docker.io/geerlingguy/docker-ubuntu2004-ansible:latest
     hostname: ubuntu
     privileged: true

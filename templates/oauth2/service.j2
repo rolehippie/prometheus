@@ -22,28 +22,28 @@ ExecStart=/usr/bin/docker run --rm \
   --name %p \
   --hostname %p \
   --env-file /etc/default/prometheus-oauth2 \
-{% if prometheus_oauth2_memory_limit | default(False) %}
+{% if prometheus_oauth2_memory_limit | default(false) %}
   --memory {{ prometheus_oauth2_memory_limit }} \
 {% endif %}
-{% if prometheus_oauth2_memory_swap | default(False) %}
+{% if prometheus_oauth2_memory_swap | default(false) %}
   --memory-swap {{ prometheus_oauth2_memory_swap }} \
 {% endif %}
-{% if prometheus_oauth2_memory_soft_limit | default(False) %}
+{% if prometheus_oauth2_memory_soft_limit | default(false) %}
   --memory-reservation {{ prometheus_oauth2_memory_soft_limit }} \
 {% endif %}
-{% if prometheus_oauth2_cpu_shares | default(False) %}
+{% if prometheus_oauth2_cpu_shares | default(false) %}
   --cpu-shares {{ prometheus_oauth2_cpu_shares }} \
 {% endif %}
-{% if prometheus_oauth2_number_of_cpus | default(False) %}
+{% if prometheus_oauth2_number_of_cpus | default(false) %}
   --cpus {{ prometheus_oauth2_number_of_cpus }} \
 {% endif %}
 {% for item in prometheus_oauth2_default_labels + prometheus_oauth2_extra_labels %}
   --label {{ item }} \
 {% endfor %}
-{% if prometheus_oauth2_network | default(False) %}
+{% if prometheus_oauth2_network | default(false) %}
   --network {{ prometheus_oauth2_network }} \
 {% endif %}
-{% if prometheus_oauth2_static_users | default(False) %}
+{% if prometheus_oauth2_static_users | default(false) %}
   --volume /etc/prometheus/htpasswd:/etc/prometheus/htpasswd \
 {% endif %}
 {% for item in prometheus_oauth2_default_publish + prometheus_oauth2_extra_publish %}

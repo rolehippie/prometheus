@@ -6,14 +6,17 @@ prometheus_installation: native
 # renovate: datasource=github-releases depName=prometheus/prometheus
 prometheus_version: 3.6.0
 
+# @var prometheus_arch:description: Target system architecture of the binary
+prometheus_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' or ansible_architecture == 'arm64' else 'amd64' }}"
+
 # @var prometheus_download:description: URL to the archive of the release to install
-prometheus_download: "https://github.com/prometheus/prometheus/releases/download/v{{ prometheus_version }}/prometheus-{{ prometheus_version }}.linux-amd64.tar.gz"
+prometheus_download: "https://github.com/prometheus/prometheus/releases/download/v{{ prometheus_version }}/prometheus-{{ prometheus_version }}.linux-{{ prometheus_arch }}.tar.gz"
 
 # @var prometheus_image:description: Docker image to use for deployment
 prometheus_image: "quay.io/prometheus/prometheus:v{{ prometheus_version }}"
 
 # @var prometheus_pull_image:description: Pull image as part of the tasks
-prometheus_pull_image: True
+prometheus_pull_image: true
 
 # @var prometheus_network:description: Optional docker network to attach
 prometheus_network:
@@ -104,7 +107,7 @@ prometheus_tsdb_retention_time: 30d
 prometheus_tsdb_retention_size:
 
 # @var prometheus_enable_remote_write_receiver:description: Enable remote-write receiver in Prometheus
-prometheus_enable_remote_write_receiver: False
+prometheus_enable_remote_write_receiver: false
 
 # @var prometheus_rule_files:description: List of paths to read rule files from
 prometheus_rule_files:
@@ -176,20 +179,23 @@ prometheus_extra_rules: []
 prometheus_listen_address: 0.0.0.0:9090
 
 # @var prometheus_oauth2_enabled:description: Enable OAuth2 authentication service
-prometheus_oauth2_enabled: False
+prometheus_oauth2_enabled: false
 
 # @var prometheus_oauth2_version:description: Version of the OAuth2 Proxy to download
 # renovate: datasource=github-releases depName=oauth2-proxy/oauth2-proxy
 prometheus_oauth2_version: 7.12.0
 
+# @var prometheus_oauth2_arch:description: Target system architecture of the binary
+prometheus_oauth2_arch: "{{ prometheus_arch }}"
+
 # @var prometheus_oauth2_enabled:description: URL of the OAuth2 Proxy to download
-prometheus_oauth2_download: "https://github.com/oauth2-proxy/oauth2-proxy/releases/download/v{{ prometheus_oauth2_version }}/oauth2-proxy-v{{ prometheus_oauth2_version }}.linux-amd64.tar.gz"
+prometheus_oauth2_download: "https://github.com/oauth2-proxy/oauth2-proxy/releases/download/v{{ prometheus_oauth2_version }}/oauth2-proxy-v{{ prometheus_oauth2_version }}.linux-{{ prometheus_oauth2_arch }}.tar.gz"
 
 # @var prometheus_image:description: Docker image to use for deployment on OAuth2 Proxy
 prometheus_oauth2_image: "quay.io/oauth2-proxy/oauth2-proxy:v{{ prometheus_oauth2_version }}"
 
 # @var prometheus_pull_image:description: Pull image as part of the tasks
-prometheus_oauth2_pull_image: True
+prometheus_oauth2_pull_image: true
 
 # @var prometheus_network:description: Optional docker network to attach on OAuth2 Proxy
 prometheus_oauth2_network: "{{ prometheus_network }}"
@@ -241,10 +247,10 @@ prometheus_oauth2_upstream: "http://{{ prometheus_listen_address if prometheus_i
 prometheus_oauth2_listen_address: 0.0.0.0:9089
 
 # @var prometheus_oauth2_request_logging:description: Enable request logging for OAuth2 proxy
-prometheus_oauth2_request_logging: False
+prometheus_oauth2_request_logging: false
 
 # @var prometheus_oauth2_access_logging:description: Enable access logging for OAuth2 proxy
-prometheus_oauth2_access_logging: False
+prometheus_oauth2_access_logging: false
 
 # @var prometheus_oauth2_cookie_secret:description: Cookie secret used by OAuth2 proxy
 prometheus_oauth2_cookie_secret:

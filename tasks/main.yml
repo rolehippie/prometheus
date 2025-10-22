@@ -15,7 +15,7 @@
     - prometheus_installation == 'native'
   ansible.builtin.group:
     name: prometheus
-    system: True
+    system: true
     state: present
   tags:
     - prometheus
@@ -29,8 +29,8 @@
     password: "!"
     shell: /usr/sbin/nologin
     home: /var/lib/prometheus
-    create_home: False
-    system: True
+    create_home: false
+    system: true
     state: present
   tags:
     - prometheus
@@ -50,9 +50,9 @@
   when:
     - prometheus_installation == 'native'
   register: prometheus_version_check
-  failed_when: False
-  changed_when: False
-  check_mode: False
+  failed_when: false
+  changed_when: false
+  check_mode: false
   ansible.builtin.shell: /usr/bin/prometheus --version 2>&1
   tags:
     - prometheus
@@ -74,7 +74,7 @@
   ansible.builtin.unarchive:
     src: "{{ prometheus_download }}"
     dest: /usr/local/src
-    remote_src: True
+    remote_src: true
     owner: root
     group: root
   tags:
@@ -92,8 +92,8 @@
   ansible.posix.synchronize:
     src: "/usr/local/src/prometheus-{{ prometheus_version }}.linux-amd64/console_libraries"
     dest: /etc/prometheus
-    delete: True
-    recursive: True
+    delete: true
+    recursive: true
   tags:
     - prometheus
 
@@ -109,7 +109,7 @@
     path: /etc/prometheus/console_libraries
     owner: prometheus
     group: prometheus
-    recurse: True
+    recurse: true
   tags:
     - prometheus
 
@@ -135,8 +135,8 @@
   ansible.posix.synchronize:
     src: "/usr/local/src/prometheus-{{ prometheus_version }}.linux-amd64/consoles"
     dest: /etc/prometheus
-    delete: True
-    recursive: True
+    delete: true
+    recursive: true
   tags:
     - prometheus
 
@@ -152,7 +152,7 @@
     path: /etc/prometheus/consoles
     owner: prometheus
     group: prometheus
-    recurse: True
+    recurse: true
   tags:
     - prometheus
 
@@ -177,9 +177,9 @@
     - prometheus
     - promtool
   ansible.builtin.copy:
-    src: "/usr/local/src/prometheus-{{ prometheus_version }}.linux-amd64/{{ item }}"
+    src: "/usr/local/src/prometheus-{{ prometheus_version }}.linux-{{ prometheus_arch }}/{{ item }}"
     dest: "/usr/bin/{{ item }}"
-    remote_src: True
+    remote_src: true
     owner: root
     group: root
     mode: u=rwx,g=rx,o=rx
@@ -213,7 +213,10 @@
   loop: "{{ prometheus_default_rules + prometheus_extra_rules }}"
   loop_control:
     label: "{{ item.name }}"
-  when: item.url | default(False) and item.state | default("present") == "present"
+  when:
+    - item.url is defined
+    - item.url is not none
+    - item.state | default("present") == "present"
   ansible.builtin.get_url:
     url: "{{ item.url }}"
     dest: "{{ item.path | default('/etc/prometheus/rules') }}/{{ item.name }}.yml"
@@ -229,7 +232,10 @@
   loop: "{{ prometheus_default_rules + prometheus_extra_rules }}"
   loop_control:
     label: "{{ item.name }}"
-  when: item.content | default(False) and item.state | default("present") == "present"
+  when:
+    - item.content is defined
+    - item.content is not none
+    - item.state | default("present") == "present"
   ansible.builtin.copy:
     content: "{{ item.content }}"
     dest: "{{ item.path | default('/etc/prometheus/rules') }}/{{ item.name }}.yml"
@@ -245,7 +251,10 @@
   loop: "{{ prometheus_default_rules + prometheus_extra_rules }}"
   loop_control:
     label: "{{ item.name }}"
-  when: item.src | default(False) and item.state | default("present") == "present"
+  when:
+    - item.src is defined
+    - item.src is not none
+    - item.state | default("present") == "present"
   ansible.builtin.copy:
     src: "{{ item.src }}"
     dest: "{{ item.path | default('/etc/prometheus/rules') }}/{{ item.name }}.yml"
@@ -261,7 +270,8 @@
   loop: "{{ prometheus_default_rules + prometheus_extra_rules }}"
   loop_control:
     label: "{{ item.name }}"
-  when: item.state | default("present") == "absent"
+  when:
+    - item.state | default("present") == "absent"
   ansible.builtin.file:
     path: "{{ item.path | default('/etc/prometheus/rules') }}/{{ item.name }}.yml"
     state: absent
@@ -305,7 +315,7 @@
 - name: Create docker network
   when:
     - prometheus_installation == 'docker'
-    - prometheus_network | default(False)
+    - false if prometheus_network is none else (prometheus_network | length > 0)| default(false)
   community.docker.docker_network:
     name: '{{ prometheus_network }}'
   tags:
@@ -315,9 +325,9 @@
   ansible.builtin.systemd:
     name: prometheus
     state: started
-    daemon_reload: True
-    masked: False
-    enabled: True
+    daemon_reload: true
+    masked: false
+    enabled: true
   tags:
     - prometheus
 
@@ -325,13 +335,14 @@
   when:
     - prometheus_installation == 'native'
   ansible.builtin.file:
-    path: "/usr/local/src/prometheus-{{ prometheus_version }}.linux-amd64"
+    path: "/usr/local/src/prometheus-{{ prometheus_version }}.linux-{{ prometheus_arch }}"
     state: absent
   tags:
     - prometheus
 
 - name: Include oauth2 tasks
-  when: prometheus_oauth2_enabled | default(False)
+  when:
+    - prometheus_oauth2_enabled
   ansible.builtin.include_tasks: oauth2.yml
   tags:
     - prometheus

@@ -1,0 +1,10 @@
+---
+- name: Converge
+  hosts: all
+  vars:
+    prometheus_installation: docker
+  roles:
+    - role: rolehippie.docker
+    - role: rolehippie.prometheus
+
+...
