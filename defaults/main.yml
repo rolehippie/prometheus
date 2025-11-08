@@ -4,7 +4,7 @@ prometheus_installation: native
 
 # @var prometheus_version:description: Version of the release to install
 # renovate: datasource=github-releases depName=prometheus/prometheus
-prometheus_version: 3.7.2
+prometheus_version: 3.7.3
 
 # @var prometheus_arch:description: Target system architecture of the binary
 prometheus_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' or ansible_architecture == 'arm64' else 'amd64' }}"
@@ -183,7 +183,7 @@ prometheus_oauth2_enabled: false
 
 # @var prometheus_oauth2_version:description: Version of the OAuth2 Proxy to download
 # renovate: datasource=github-releases depName=oauth2-proxy/oauth2-proxy
-prometheus_oauth2_version: 7.12.0
+prometheus_oauth2_version: 7.13.0
 
 # @var prometheus_oauth2_arch:description: Target system architecture of the binary
 prometheus_oauth2_arch: "{{ prometheus_arch }}"
