@@ -4,7 +4,7 @@ prometheus_installation: native
 
 # @var prometheus_version:description: Version of the release to install
 # renovate: datasource=github-releases depName=prometheus/prometheus
-prometheus_version: 3.7.3
+prometheus_version: 3.8.1
 
 # @var prometheus_arch:description: Target system architecture of the binary
 prometheus_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' or ansible_architecture == 'arm64' else 'amd64' }}"
