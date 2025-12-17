@@ -2,6 +2,8 @@
 - name: Converge
   hosts: all
   vars:
+    docker_daemon_config:
+      storage-driver: vfs
     prometheus_installation: docker
   roles:
     - role: rolehippie.docker
