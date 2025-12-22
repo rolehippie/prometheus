@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.1.0](https://github.com/rolehippie/prometheus/compare/v4.0.0...v4.1.0) (2025-12-22)
+
+
+### Features
+
+* **minor:** update dependency community.general to >=12.1.0,<12.2.0 ([#103](https://github.com/rolehippie/prometheus/issues/103)) ([a47a66b](https://github.com/rolehippie/prometheus/commit/a47a66b813cf8252a443faf5ca90bc6166f0b6b4))
+* **minor:** update dependency prometheus/prometheus to v3.8.1 ([#104](https://github.com/rolehippie/prometheus/issues/104)) ([76c9ae2](https://github.com/rolehippie/prometheus/commit/76c9ae27cdf50de3977c10e1d6b18b50cd434acd))
+
 ## [4.0.0](https://github.com/rolehippie/prometheus/compare/v3.11.0...v4.0.0) (2025-11-10)
 
 
