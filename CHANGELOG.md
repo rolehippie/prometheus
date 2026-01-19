@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.4.0](https://github.com/rolehippie/prometheus/compare/v4.3.0...v4.4.0) (2026-01-19)
+
+### Dependencies
+
+* **minor:** update dependency oauth2-proxy/oauth2-proxy to v7.14.0 ([#112](https://github.com/rolehippie/prometheus/issues/112)) ([da5c14c](https://github.com/rolehippie/prometheus/commit/da5c14c9048e44d2e73ff1860144f0393ba4dd92))
+* **patch:** update dependency oauth2-proxy/oauth2-proxy to v7.14.1 ([#113](https://github.com/rolehippie/prometheus/issues/113)) ([960d522](https://github.com/rolehippie/prometheus/commit/960d522dabef1f8c57087bec7e19c9173c3311a8))
+* **patch:** update dependency oauth2-proxy/oauth2-proxy to v7.14.2 ([#114](https://github.com/rolehippie/prometheus/issues/114)) ([163dd3e](https://github.com/rolehippie/prometheus/commit/163dd3e5ce4fd821d8c13d51c864eacde10a816c))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([b57ac16](https://github.com/rolehippie/prometheus/commit/b57ac16316c2cc2ab9403f8c974c293e5415c50b))
+
 ## [4.3.0](https://github.com/rolehippie/prometheus/compare/v4.2.0...v4.3.0) (2026-01-12)
 
 ### Dependencies
