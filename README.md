@@ -889,7 +889,7 @@ Version of the release to install
 #### Default value
 
 ```YAML
-prometheus_version: 3.9.1
+prometheus_version: 3.10.0
 ```
 
 ## Discovered Tags
