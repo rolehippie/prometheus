@@ -1,5 +1,20 @@
 # Changelog
 
+## [4.6.0](https://github.com/rolehippie/prometheus/compare/v4.5.0...v4.6.0) (2026-03-02)
+
+### Dependencies
+
+* **minor:** update dependency community.general to >=12.4.0,<12.5.0 ([#116](https://github.com/rolehippie/prometheus/issues/116)) ([e78a0ce](https://github.com/rolehippie/prometheus/commit/e78a0ceb5bac5684570d7800418da1b996d8a193))
+* **minor:** update dependency prometheus/prometheus to v3.10.0 ([#117](https://github.com/rolehippie/prometheus/issues/117)) ([014feb0](https://github.com/rolehippie/prometheus/commit/014feb06103cb41a6b494230aa81ab3c4e5c7d00))
+* **patch:** update dependency oauth2-proxy/oauth2-proxy to v7.14.3 ([#118](https://github.com/rolehippie/prometheus/issues/118)) ([3e88dab](https://github.com/rolehippie/prometheus/commit/3e88dab8d0b6b855c70091c1d51f306fece6fb8a))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([1143efd](https://github.com/rolehippie/prometheus/commit/1143efd25e3538bb086423d36d9548b386167c4c))
+* **flake:** updated lockfile [skip ci] ([2426c89](https://github.com/rolehippie/prometheus/commit/2426c894ab0e2afd555e35f8e929b7b306109fc3))
+* **flake:** updated lockfile [skip ci] ([b4fed0b](https://github.com/rolehippie/prometheus/commit/b4fed0b991782221f13b1b44b99f3c14f4eb2127))
+* **flake:** updated lockfile [skip ci] ([e54c295](https://github.com/rolehippie/prometheus/commit/e54c2959fb867d8a8ee00365b7558286d006ddd1))
+
 ## [4.5.0](https://github.com/rolehippie/prometheus/compare/v4.4.0...v4.5.0) (2026-02-02)
 
 ### Dependencies
