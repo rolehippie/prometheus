@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.8.0](https://github.com/rolehippie/prometheus/compare/v4.7.0...v4.8.0) (2026-03-30)
+
+### Dependencies
+
+* **minor:** update dependency community.docker to >=5.1.0,<5.2.0 ([#123](https://github.com/rolehippie/prometheus/issues/123)) ([62dc652](https://github.com/rolehippie/prometheus/commit/62dc652a1cb29b0094c71ad8a49306c71bf93b73))
+* **minor:** update dependency community.general to >=12.5.0,<12.6.0 ([#124](https://github.com/rolehippie/prometheus/issues/124)) ([0e29956](https://github.com/rolehippie/prometheus/commit/0e29956f55b62281e206ff7bd26e45e3f3bb4c5c))
+* **patch:** update dependency oauth2-proxy/oauth2-proxy to v7.15.1 ([#122](https://github.com/rolehippie/prometheus/issues/122)) ([c45c3c5](https://github.com/rolehippie/prometheus/commit/c45c3c5f7c796f37559a131b39981fe79977c6b3))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([9790127](https://github.com/rolehippie/prometheus/commit/97901274702bb49e2c21dff09f6ddf460eed28d8))
+
 ## [4.7.0](https://github.com/rolehippie/prometheus/compare/v4.6.0...v4.7.0) (2026-03-23)
 
 ### Dependencies
