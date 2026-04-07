@@ -117,8 +117,7 @@ Target system architecture of the binary
 #### Default value
 
 ```YAML
-prometheus_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' or ansible_architecture
-  == 'arm64' else 'amd64' }}"
+prometheus_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' or ansible_architecture == 'arm64' else 'amd64' }}"
 ```
 
 ### prometheus_cpu_shares
@@ -242,10 +241,7 @@ URL to the archive of the release to install
 #### Default value
 
 ```YAML
-prometheus_download: 
-  https://github.com/prometheus/prometheus/releases/download/v{{ 
-  prometheus_version }}/prometheus-{{ prometheus_version }}.linux-{{ 
-  prometheus_arch }}.tar.gz
+prometheus_download: https://github.com/prometheus/prometheus/releases/download/v{{ prometheus_version }}/prometheus-{{ prometheus_version }}.linux-{{ prometheus_arch }}.tar.gz
 ```
 
 ### prometheus_enable_remote_write_receiver
@@ -503,7 +499,7 @@ Target system architecture of the binary
 #### Default value
 
 ```YAML
-prometheus_oauth2_arch: '{{ prometheus_arch }}'
+prometheus_oauth2_arch: "{{ 'arm64' if ansible_architecture == 'aarch64' or ansible_architecture == 'arm64' else 'amd64' }}"
 ```
 
 ### prometheus_oauth2_client_id
@@ -584,10 +580,7 @@ prometheus_oauth2_default_publish:
 #### Default value
 
 ```YAML
-prometheus_oauth2_download: 
-  https://github.com/oauth2-proxy/oauth2-proxy/releases/download/v{{ 
-  prometheus_oauth2_version }}/oauth2-proxy-v{{ prometheus_oauth2_version 
-  }}.linux-{{ prometheus_oauth2_arch }}.tar.gz
+prometheus_oauth2_download: https://github.com/oauth2-proxy/oauth2-proxy/releases/download/v{{ prometheus_oauth2_version }}/oauth2-proxy-v{{ prometheus_oauth2_version }}.linux-{{ prometheus_oauth2_arch }}.tar.gz
 ```
 
 ### prometheus_oauth2_enabled
@@ -632,8 +625,7 @@ prometheus_oauth2_extra_publish:
 #### Default value
 
 ```YAML
-prometheus_oauth2_image: quay.io/oauth2-proxy/oauth2-proxy:v{{ 
-  prometheus_oauth2_version }}
+prometheus_oauth2_image: quay.io/oauth2-proxy/oauth2-proxy:v{{ prometheus_oauth2_version }}
 ```
 
 ### prometheus_oauth2_keycloak_url
@@ -709,7 +701,7 @@ prometheus_oauth2_memory_swap: 2048m
 #### Default value
 
 ```YAML
-prometheus_oauth2_network: '{{ prometheus_network }}'
+prometheus_oauth2_network:
 ```
 
 ### prometheus_oauth2_number_of_cpus
@@ -795,8 +787,7 @@ Upstream target for the OAuth2 proxy
 #### Default value
 
 ```YAML
-prometheus_oauth2_upstream: http://{{ prometheus_listen_address if 
-  prometheus_installation == 'native' else 'prometheus:9090' }}
+prometheus_oauth2_upstream: http://{{ prometheus_listen_address if prometheus_installation == 'native' else 'prometheus:9090' }}
 ```
 
 ### prometheus_oauth2_version
@@ -889,7 +880,7 @@ Version of the release to install
 #### Default value
 
 ```YAML
-prometheus_version: 3.11.0
+prometheus_version: 3.11.1
 ```
 
 ## Discovered Tags
