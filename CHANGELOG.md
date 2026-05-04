@@ -1,5 +1,15 @@
 # Changelog
 
+## [4.11.1](https://github.com/rolehippie/prometheus/compare/v4.11.0...v4.11.1) (2026-05-04)
+
+### Dependencies
+
+* **patch:** update dependency prometheus/prometheus to v3.11.3 ([#132](https://github.com/rolehippie/prometheus/issues/132)) ([d49c679](https://github.com/rolehippie/prometheus/commit/d49c6790bc8b54366bc2a849805357be5c691370))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([5ae5b7b](https://github.com/rolehippie/prometheus/commit/5ae5b7b0f1e74dd53e9d5dacd12b5d9f35aeb071))
+
 ## [4.11.0](https://github.com/rolehippie/prometheus/compare/v4.10.1...v4.11.0) (2026-04-27)
 
 ### Dependencies
