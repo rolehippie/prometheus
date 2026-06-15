@@ -1,5 +1,16 @@
 # Changelog
 
+## [5.1.1](https://github.com/rolehippie/prometheus/compare/v5.1.0...v5.1.1) (2026-06-15)
+
+### Dependencies
+
+* **patch:** update version prefix to v7.15.3 ([#135](https://github.com/rolehippie/prometheus/issues/135)) ([ade302d](https://github.com/rolehippie/prometheus/commit/ade302d51cfb465f3e85f0f5432b53ff7d125917))
+
+### Miscellaneous
+
+* **flake:** updated lockfile [skip ci] ([b573672](https://github.com/rolehippie/prometheus/commit/b573672e37ea1ba745af1cef143a0ed25fd58539))
+* **flake:** updated lockfile [skip ci] ([03c3b20](https://github.com/rolehippie/prometheus/commit/03c3b20eba1a784c745182c48e05891c3b679a06))
+
 ## [5.1.0](https://github.com/rolehippie/prometheus/compare/v5.0.0...v5.1.0) (2026-06-01)
 
 ### Dependencies
