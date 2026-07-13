@@ -1,5 +1,7 @@
 # Changelog
 
+## [5.3.1](https://github.com/rolehippie/prometheus/compare/v5.3.0...v5.3.1) (2026-07-13)
+
 ## [5.3.0](https://github.com/rolehippie/prometheus/compare/v5.2.0...v5.3.0) (2026-07-06)
 
 ## [5.2.0](https://github.com/rolehippie/prometheus/compare/v5.1.1...v5.2.0) (2026-06-22)
