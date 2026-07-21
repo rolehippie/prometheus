@@ -21,7 +21,7 @@ jobs:
 
     steps:
       - name: Checkout source
-        uses: actions/checkout@v7.0.0
+        uses: actions/checkout@v7.0.1
 
       - name: Role linting
         uses: ansible/ansible-lint@main
@@ -45,7 +45,7 @@ jobs:
         run: rm -rf /opt/hostedtoolcache/Python
 
       - name: Checkout source
-        uses: actions/checkout@v7.0.0
+        uses: actions/checkout@v7.0.1
 
       - name: Setup Python
         uses: actions/setup-python@v6
