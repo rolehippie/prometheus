@@ -1,5 +1,11 @@
 # Changelog
 
+## [5.5.1](https://github.com/rolehippie/prometheus/compare/v5.5.0...v5.5.1) (2026-08-03)
+
+### Dependencies
+
+* **patch:** update dependency prometheus/prometheus to v3.13.2 ([#144](https://github.com/rolehippie/prometheus/issues/144)) ([8275faf](https://github.com/rolehippie/prometheus/commit/8275faf7fa61d9131b4c9ae3325257b5fd850233))
+
 ## [5.5.0](https://github.com/rolehippie/prometheus/compare/v5.4.0...v5.5.0) (2026-07-27)
 
 ## [5.4.0](https://github.com/rolehippie/prometheus/compare/v5.3.1...v5.4.0) (2026-07-20)
