@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.6.0](https://github.com/rolehippie/prometheus/compare/v5.5.1...v5.6.0) (2026-08-10)
+
+### Dependencies
+
+* **minor:** update dependency pipx:ansible-doctor to v8.4.0 ([#147](https://github.com/rolehippie/prometheus/issues/147)) ([f32ed2f](https://github.com/rolehippie/prometheus/commit/f32ed2f4a9a8928490d4eeb1e96d8244a52c56a3))
+* **patch:** update dependency python to v3.14.7 ([#145](https://github.com/rolehippie/prometheus/issues/145)) ([c0d5748](https://github.com/rolehippie/prometheus/commit/c0d5748c3f38b6f4bd9328a7a8f38501d3b3f19d))
+
 ## [5.5.1](https://github.com/rolehippie/prometheus/compare/v5.5.0...v5.5.1) (2026-08-03)
 
 ### Dependencies
