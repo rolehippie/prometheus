@@ -1,5 +1,14 @@
 # Changelog
 
+## [5.7.0](https://github.com/rolehippie/prometheus/compare/v5.6.0...v5.7.0) (2026-08-17)
+
+### Dependencies
+
+* **minor:** update dependency community.general to >=13.3.0,<13.4.0 ([#149](https://github.com/rolehippie/prometheus/issues/149)) ([c948723](https://github.com/rolehippie/prometheus/commit/c948723ab1c38668fe228f8a99a76a3ded267627))
+* **minor:** update dependency pipx:ansible-lint to v26.8.0 ([#151](https://github.com/rolehippie/prometheus/issues/151)) ([7bc4572](https://github.com/rolehippie/prometheus/commit/7bc45724fe0bc2bef6a93a32765c3c2fcbfaa46b))
+* **patch:** update dependency pipx:ansible-core to v2.21.3 ([#148](https://github.com/rolehippie/prometheus/issues/148)) ([9945b94](https://github.com/rolehippie/prometheus/commit/9945b94b4729ddd38c96526e6071e59ff5968e97))
+* **patch:** update dependency pre-commit to v4.6.2 ([#150](https://github.com/rolehippie/prometheus/issues/150)) ([dfe79ef](https://github.com/rolehippie/prometheus/commit/dfe79eff0257199a36cf18e7a58f5d7e2f4ef0f8))
+
 ## [5.6.0](https://github.com/rolehippie/prometheus/compare/v5.5.1...v5.6.0) (2026-08-10)
 
 ### Dependencies
