@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.8.0](https://github.com/rolehippie/prometheus/compare/v5.7.0...v5.8.0) (2026-08-24)
+
+### Dependencies
+
+* **minor:** update dependency pipx:molecule to v26.8.0 ([#152](https://github.com/rolehippie/prometheus/issues/152)) ([14f7c9c](https://github.com/rolehippie/prometheus/commit/14f7c9c79fffde095eb1444e036dfc2156e8e896))
+* **minor:** update dependency prometheus/prometheus to v3.14.0 ([#153](https://github.com/rolehippie/prometheus/issues/153)) ([a335b3b](https://github.com/rolehippie/prometheus/commit/a335b3b3746dd93a655c8e5b17c0642fb0560f7c))
+* **patch:** update dependency oauth2-proxy/oauth2-proxy to v7.15.4 ([#154](https://github.com/rolehippie/prometheus/issues/154)) ([ef7bb90](https://github.com/rolehippie/prometheus/commit/ef7bb902482f6c810d312051a29f45ba89fbb055))
+
 ## [5.7.0](https://github.com/rolehippie/prometheus/compare/v5.6.0...v5.7.0) (2026-08-17)
 
 ### Dependencies
