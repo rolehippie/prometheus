@@ -1,5 +1,16 @@
 # Changelog
 
+## [5.9.0](https://github.com/rolehippie/prometheus/compare/v5.8.1...v5.9.0) (2026-09-07)
+
+### Features
+
+* add separate requirements for molecule run ([7552b00](https://github.com/rolehippie/prometheus/commit/7552b00b7d443d802aa28ce99fb319cbb9f3a76f))
+* use new required facts as attributes ([765e938](https://github.com/rolehippie/prometheus/commit/765e938000540994be097ed15b30d8dafef03587))
+
+### Dependencies
+
+* **minor:** update dependency community.docker to >=5.3.0,<5.4.0 ([#156](https://github.com/rolehippie/prometheus/issues/156)) ([807b216](https://github.com/rolehippie/prometheus/commit/807b21604e91ca3329a921456cb044d1770236df))
+
 ## [5.8.1](https://github.com/rolehippie/prometheus/compare/v5.8.0...v5.8.1) (2026-08-31)
 
 ### Dependencies
