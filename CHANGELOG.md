@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.10.0](https://github.com/rolehippie/prometheus/compare/v5.9.0...v5.10.0) (2026-09-14)
+
+### Dependencies
+
+* **minor:** update dependency community.general to >=13.4.0,<13.5.0 ([#157](https://github.com/rolehippie/prometheus/issues/157)) ([fe6b8a2](https://github.com/rolehippie/prometheus/commit/fe6b8a2b75333205ab06084b62bdb43a46a908f2))
+* **mise:** update dependency pipx:ansible-core to v2.21.4 ([#158](https://github.com/rolehippie/prometheus/issues/158)) ([d3594ba](https://github.com/rolehippie/prometheus/commit/d3594baa73b10e0f082bbfa95987437fef7612dc))
+* **mise:** update dependency prek to v0.5.3 ([#159](https://github.com/rolehippie/prometheus/issues/159)) ([4f3d7d7](https://github.com/rolehippie/prometheus/commit/4f3d7d7a6cca7eb23afc6f968579db92c8f0ccb1))
+
 ## [5.9.0](https://github.com/rolehippie/prometheus/compare/v5.8.1...v5.9.0) (2026-09-07)
 
 ### Features
