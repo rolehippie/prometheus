@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.12.0](https://github.com/rolehippie/prometheus/compare/v5.11.0...v5.12.0) (2026-10-05)
+
+### Dependencies
+
+* **minor:** update dependency community.docker to >=5.4.0,<5.5.0 ([#167](https://github.com/rolehippie/prometheus/issues/167)) ([73b1baf](https://github.com/rolehippie/prometheus/commit/73b1bafd71b0b48152d61ceecef75c4b819677a9))
+* **mise:** update dependency prek to v0.5.5 ([#168](https://github.com/rolehippie/prometheus/issues/168)) ([d1f676d](https://github.com/rolehippie/prometheus/commit/d1f676d1dfda4cbd54d743c8a220d51e4c2f3503))
+* **patch:** update dependency oauth2-proxy/oauth2-proxy to v7.15.5 ([#166](https://github.com/rolehippie/prometheus/issues/166)) ([b8431f4](https://github.com/rolehippie/prometheus/commit/b8431f4d555fe5892638374d8fb31f57de6995c4))
+
 ## [5.11.0](https://github.com/rolehippie/prometheus/compare/v5.10.0...v5.11.0) (2026-09-28)
 
 ### Dependencies
