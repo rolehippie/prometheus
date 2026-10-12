@@ -1,5 +1,15 @@
 # Changelog
 
+## [5.13.0](https://github.com/rolehippie/prometheus/compare/v5.12.0...v5.13.0) (2026-10-12)
+
+### Dependencies
+
+* **minor:** update dependency community.general to >=13.5.0,<13.6.0 ([#171](https://github.com/rolehippie/prometheus/issues/171)) ([b95a453](https://github.com/rolehippie/prometheus/commit/b95a4531c8c99473be1c346e5f1428ce6d2bd3ac))
+* **mise:** update dependency pipx:ansible-core to v2.21.5 ([#169](https://github.com/rolehippie/prometheus/issues/169)) ([1aa8600](https://github.com/rolehippie/prometheus/commit/1aa8600b7d8314549b1a267b8633d7ecd1ae0f6d))
+* **mise:** update dependency pipx:ansible-doctor to v8.4.3 ([#170](https://github.com/rolehippie/prometheus/issues/170)) ([578da81](https://github.com/rolehippie/prometheus/commit/578da8185c34ec6ec61de67eeb894cc75b6076bf))
+* **mise:** update dependency pipx:ansible-lint to v26.10.0 ([#172](https://github.com/rolehippie/prometheus/issues/172)) ([41e93ef](https://github.com/rolehippie/prometheus/commit/41e93ef179f17108deac2427844e755837b4e7c9))
+* **mise:** update dependency pipx:molecule to v26.10.0 ([#173](https://github.com/rolehippie/prometheus/issues/173)) ([0322e8f](https://github.com/rolehippie/prometheus/commit/0322e8f9f0560c6d286734475f4ffc13f86628e2))
+
 ## [5.12.0](https://github.com/rolehippie/prometheus/compare/v5.11.0...v5.12.0) (2026-10-05)
 
 ### Dependencies
