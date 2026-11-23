@@ -1,5 +1,24 @@
 # Changelog
 
+## [6.0.0](https://github.com/rolehippie/prometheus/compare/v5.13.1...v6.0.0) (2026-11-23)
+
+* automated readme update [skip ci] ([d0e77b1](https://github.com/rolehippie/prometheus/commit/d0e77b1a95962f60b2678d67a6ba164cdd4395d6))
+* automated release update [skip ci] ([e2baf8f](https://github.com/rolehippie/prometheus/commit/e2baf8f874e1cbba6ef4b0afdd5276bb322dc3d5))
+* automated release update [skip ci] ([2af9c73](https://github.com/rolehippie/prometheus/commit/2af9c73d9884f6a03c7597918b3d3c62e497a277))
+* automated release update [skip ci] ([78a7c1e](https://github.com/rolehippie/prometheus/commit/78a7c1e55bd297bf0486ccf69540a3ec300cad26))
+
+### Dependencies
+
+* **major:** update dependency community.general to v14 ([#186](https://github.com/rolehippie/prometheus/issues/186)) ([80d3bd2](https://github.com/rolehippie/prometheus/commit/80d3bd2991af578a6e176ee00863c69875456f5f))
+* **mise:** update dependency pipx:ansible-core to v2.22.0 ([#183](https://github.com/rolehippie/prometheus/issues/183)) ([da87766](https://github.com/rolehippie/prometheus/commit/da87766e34b6f76dcd667a78d06ab1d84135f0b2))
+* **mise:** update dependency pipx:ansible-doctor to v8.4.4 ([#180](https://github.com/rolehippie/prometheus/issues/180)) ([cf9c1c5](https://github.com/rolehippie/prometheus/commit/cf9c1c52fc8b3a9f6b2cb9b884215aec37cb266e))
+* **mise:** update dependency pipx:ansible-lint to v26.11.0 ([#184](https://github.com/rolehippie/prometheus/issues/184)) ([72d91ee](https://github.com/rolehippie/prometheus/commit/72d91ee08e12f865256057df69468ea9c131fb59))
+* **mise:** update dependency pipx:molecule to v26.11.0 ([#185](https://github.com/rolehippie/prometheus/issues/185)) ([a16e730](https://github.com/rolehippie/prometheus/commit/a16e730ad14194b8ff0b6a354799519d11d25b7b))
+* **mise:** update dependency prek to v0.5.11 ([#181](https://github.com/rolehippie/prometheus/issues/181)) ([578eaef](https://github.com/rolehippie/prometheus/commit/578eaef455a8042dc91d2200758a6cf67f6b6fb3))
+* **mise:** update dependency prek to v0.5.9 ([#179](https://github.com/rolehippie/prometheus/issues/179)) ([a443969](https://github.com/rolehippie/prometheus/commit/a443969f5f5daa23c0a321333615adc3ace75a77))
+* **mise:** update node.js to v26 ([#178](https://github.com/rolehippie/prometheus/issues/178)) ([6ed2bc7](https://github.com/rolehippie/prometheus/commit/6ed2bc73d74c9de2604d1e59f7377c11071947c2))
+* **patch:** update version prefix ([#182](https://github.com/rolehippie/prometheus/issues/182)) ([0aeae03](https://github.com/rolehippie/prometheus/commit/0aeae03c30a775295e62638afe9be80b1950ab22))
+
 ## [5.13.1](https://github.com/rolehippie/prometheus/compare/v5.13.0...v5.13.1) (2026-10-26)
 
 ### Dependencies
